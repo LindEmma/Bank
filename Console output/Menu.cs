@@ -14,6 +14,11 @@ namespace Bank.Console_output
             AnsiConsole.WriteLine("4. Stäng sidan");
         }
 
+        public static void PrintFullMenu()
+        {
+            MenuTitle();
+            Console.WriteLine("");
+        }
         public static void MenuTitle()
         {
             ////Panel test
@@ -42,10 +47,20 @@ namespace Bank.Console_output
             //    // Echo the fruit back to the terminal
             //    AnsiConsole.WriteLine($"I agree. {fruit} is tasty!");
 
-            AnsiConsole.Write(
-        new FigletText("FoxBank")
-        .LeftJustified()
-        .Color(Color.Red));
+            //    AnsiConsole.Write(
+            //new FigletText("FoxBank")
+            //.LeftJustified()
+            //.Color(Color.Red));
+
+            Console.WriteLine("  ______          ____              _    " +
+                "\r\n |  ____|        |  _ \\            | |   \r\n " +
+                "| |__ _____  __ | |_) | __ _ _ __ | | __\r\n |  __/ _ " +
+                "\\ \\/ / |  _ < / _` | '_ \\| |/ /" +
+                "\r\n | | | (_) >  <  | |" +
+                "_) | (_| | | | |   < \r\n |_|  \\___/_/\\_\\ |__" +
+                "__/ \\__,_|_| |_|_|\\_\\\r\n                       " +
+                "                " +
+                "  \r\n                                         ");
         }
 
         public static void PrintLoginPage()
