@@ -12,37 +12,13 @@ namespace Bank.Classes
         public string AccountName { get; set; }
 
 
-        public Account CreateAccount()
+        public void PrintAccountInfo()
         {
-            Console.Write("vad ska ditt konto heta?");
-            string AccountName = Console.ReadLine();
-            Console.Write("Hur mycket pengar vill du lägga in på kontot?");
-            decimal Balance = decimal.Parse(Console.ReadLine());
-            return new Account();
+            Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance}");
         }
-
-        public void Transfer()
+        public void PrintAccountName()
         {
-            Console.WriteLine("Vilket konto vill du föra över pengar från?");
-            
-            string transferFromAccount = Console.ReadLine();
-            Console.WriteLine("Vilket konto vill du föra över pengar till?");
-
-        }
-
-        public void ShowBalance(List<Account> accounts)
-        {
-            foreach (var account in accounts)
-            {
-                Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance}");
-            }
-        }
-        public void AccountNameList(List<Account>accounts)
-        {
-            foreach (var accountName in accounts)
-            {
-                Console.WriteLine($"{AccountName}");
-            }
+            Console.WriteLine(AccountName);
         }
     }
 }

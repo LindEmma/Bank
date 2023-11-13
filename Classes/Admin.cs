@@ -18,6 +18,9 @@ namespace Bank.Classes
             
         }
 
-        public 
+        public void CreateUser()
+        {
+
+        }
     }
 }

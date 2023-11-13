@@ -1,6 +1,6 @@
 ﻿using Bank.Classes;
 using Bank.Console_output;
-using Spectre.Console;
+using Bank.Logic;
 
 namespace Bank
 {
@@ -31,23 +31,24 @@ namespace Bank
 
                 Console.Clear();
                 Menu.PrintCustomerMenu();
-
+                
                 string customerChoice = Console.ReadLine();
                 Console.Clear();
                 switch (customerChoice)
                 {
                     case "1":
-                        Account acc = new Account();
-                        acc.CreateAccount();
+                        CustomerMethods.CreateAccount();
+                        
                         //Skapa ett konto
                         break;
 
                     case "2":
-                        acc.Transfer();
+                        CustomerMethods.ShowBalance(AccountList);
                         break;
 
                     case "3":
                         //Överför pengar
+                        CustomerMethods.Transfer();
                         break;
 
                     case "4":
