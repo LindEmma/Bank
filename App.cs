@@ -37,18 +37,19 @@ namespace Bank
                 switch (customerChoice)
                 {
                     case "1":
-                        CustomerMethods.CreateAccount();
-                        
-                        //Skapa ett konto
+                        //skapar ett konto
+                        var newAccount=CustomerMethods.CreateAccount();
+                        AccountList.Add(newAccount);
                         break;
 
                     case "2":
+                        //Visar användarens konton
                         CustomerMethods.ShowBalance(AccountList);
                         break;
 
                     case "3":
                         //Överför pengar
-                        CustomerMethods.Transfer();
+                        CustomerMethods.Transfer(AccountList);
                         break;
 
                     case "4":
@@ -60,6 +61,7 @@ namespace Bank
                         //Ta ett lån
                         break;
                     case "6":
+                        Console.WriteLine("Tack för idag");
                         QuitApp();
                         break;
                     default:
