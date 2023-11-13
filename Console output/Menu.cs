@@ -6,12 +6,22 @@ namespace Bank.Console_output
     {
         public static void PrintStartMenu()
         {
-            
+
             AnsiConsole.MarkupLine("[red]VÄLKOMMEN[/] TILL BANKEN");
-            AnsiConsole.WriteLine("1. Logga in");
-            
-            AnsiConsole.WriteLine("3. Om oss");
-            AnsiConsole.WriteLine("4. Stäng sidan");
+            AnsiConsole.WriteLine("[1] Logga in");
+            AnsiConsole.WriteLine("[2] Om oss");
+            AnsiConsole.WriteLine("[3] Stäng sidan");
+            String userInput = Console.ReadLine();
+            switch (userInput)
+            {
+                case "1":
+                    PrintLoginPage();
+                    break;
+
+                case "3":
+                    
+                    break;
+            }
         }
 
         public static void PrintFullMenu()
@@ -52,7 +62,7 @@ namespace Bank.Console_output
             //.LeftJustified()
             //.Color(Color.Red));
 
-            Console.WriteLine("  ______          ____              _    " +
+            Console.Write("  ______          ____              _    " +
                 "\r\n |  ____|        |  _ \\            | |   \r\n " +
                 "| |__ _____  __ | |_) | __ _ _ __ | | __\r\n |  __/ _ " +
                 "\\ \\/ / |  _ < / _` | '_ \\| |/ /" +
@@ -60,12 +70,21 @@ namespace Bank.Console_output
                 "_) | (_| | | | |   < \r\n |_|  \\___/_/\\_\\ |__" +
                 "__/ \\__,_|_| |_|_|\\_\\\r\n                       " +
                 "                " +
-                "  \r\n                                         ");
+                "  \r\n ");
+            
         }
 
         public static void PrintLoginPage()
         {
-            Console.WriteLine();
+            Console.WriteLine("Logga in som admin");
+            Console.WriteLine("Logga in som kund");
+            string userInput = Console.ReadLine();
+            switch(userInput)
+            {
+                case "1":
+                    AdminMenu();
+                    break;
+            }
         }
 
         public static void AdminMenu()
@@ -73,6 +92,7 @@ namespace Bank.Console_output
             Console.WriteLine("Skapa användare");
             Console.WriteLine("Logga ut");
         }
+        
 
     }
 }
