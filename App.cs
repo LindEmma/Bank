@@ -24,35 +24,45 @@ namespace Bank
         {
             while (RunApp) // ==true
             {
+                //Console.Clear();
+                //Menu.PrintStartMenu();
+
+                // metod för att logga in
+
                 Console.Clear();
-                Menu.MenuTitle();
-                Menu.PrintStartMenu();
-                string userChoice = Console.ReadLine();
+                Menu.PrintCustomerMenu();
+
+                string customerChoice = Console.ReadLine();
                 Console.Clear();
-                switch (userChoice)
+                switch (customerChoice)
                 {
                     case "1":
-                        //Logga in
+                        Account acc = new Account();
+                        acc.CreateAccount();
+                        //Skapa ett konto
                         break;
 
                     case "2":
-                        //skapa användare
+                        acc.Transfer();
                         break;
 
                     case "3":
-                        Console.WriteLine("Vi är en bank");
-                        Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till startsidan");
-                        Console.ReadKey();
+                        //Överför pengar
                         break;
 
                     case "4":
 
-                        Console.WriteLine("Tack för att du använde banken");
-                        QuitApp(); // RunApp==false
+                        //visa kontohistorik
                         break;
 
+                    case "5":
+                        //Ta ett lån
+                        break;
+                    case "6":
+                        QuitApp();
+                        break;
                     default:
-                        Console.WriteLine("Välj 1-3");
+                        Console.WriteLine("Välj 1-6");
                         break;
                 }
             }

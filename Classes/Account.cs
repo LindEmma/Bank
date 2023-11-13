@@ -12,7 +12,7 @@ namespace Bank.Classes
         public string AccountName { get; set; }
 
 
-        public Account CreateAccount(List<Account> accounts)
+        public Account CreateAccount()
         {
             Console.Write("vad ska ditt konto heta?");
             string AccountName = Console.ReadLine();
