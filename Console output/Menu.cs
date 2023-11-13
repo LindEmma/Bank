@@ -6,28 +6,22 @@ namespace Bank.Console_output
     {
         public static void PrintStartMenu()
         {
-
             AnsiConsole.MarkupLine("[red]VÄLKOMMEN[/] TILL BANKEN");
             AnsiConsole.WriteLine("[1] Logga in");
             AnsiConsole.WriteLine("[2] Om oss");
             AnsiConsole.WriteLine("[3] Stäng sidan");
-            String userInput = Console.ReadLine();
-            switch (userInput)
-            {
-                case "1":
-                    PrintLoginPage();
-                    break;
-
-                case "3":
-                    
-                    break;
+            
             }
-        }
 
-        public static void PrintFullMenu()
+        public static void PrintCustomerMenu()
         {
             MenuTitle();
-            Console.WriteLine("");
+            Console.WriteLine("1. Skapa ett konto");
+            Console.WriteLine("2. Visa dina konton");
+            Console.WriteLine("3. Överför pengar");
+            Console.WriteLine("4. Visa kontohistorik");
+            Console.WriteLine("5. Ta ett lån");
+            Console.WriteLine("6. Logga ut");
         }
         public static void MenuTitle()
         {
