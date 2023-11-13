@@ -11,10 +11,16 @@ namespace Bank.Classes
         public decimal Balance { get; set; }
         public string AccountName { get; set; }
 
+        public Account(decimal balance, string accountName)
+        {
+            Balance = balance;
+            AccountName = accountName;
+        }
 
         public void PrintAccountInfo()
         {
-            Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance}");
+            Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance}\n" +
+                $"-------------------------");
         }
         public void PrintAccountName()
         {
