@@ -8,6 +8,7 @@ namespace Bank
     {
         public bool RunApp { get; set; }
         private List<Account> AccountList { get; set; }
+        
 
         public App()
         {
@@ -29,48 +30,50 @@ namespace Bank
 
                 // metod för att logga in??
 
-                // Nedan är menyprogrammet när kunden är inloggad. 
-                Console.Clear();
-                Menu.PrintCustomerMenu();
-                
-                string customerChoice = Console.ReadLine();
-                Console.Clear();
-                switch (customerChoice)
+                // if sats om user==customer
                 {
-                    case "1":
-                        //skapar ett konto
-                        var newAccount=CustomerMethods.CreateAccount();
-                        AccountList.Add(newAccount);
-                        break;
+                    Console.Clear();
+                    Menu.PrintCustomerMenu();
 
-                    case "2":
-                        //Visar användarens konton
-                        CustomerMethods.ShowBalance(AccountList);
-                        break;
+                    string customerChoice = Console.ReadLine();
+                    Console.Clear();
+                    switch (customerChoice)
+                    {
+                        case "1":
+                            //skapar ett konto
+                            var newAccount = CustomerMethods.CreateAccount();
+                            AccountList.Add(newAccount);
+                            break;
 
-                    case "3":
-                        //Överför pengar
-                        Transfer.TransferFromAccount(AccountList);
-                        break;
+                        case "2":
+                            //Visar användarens konton
+                            CustomerMethods.ShowBalance(AccountList);
+                            break;
 
-                    case "4":
+                        case "3":
+                            //Överför pengar
+                            Transfer.TransferFromAccount(AccountList);
+                            break;
 
-                        //visa kontohistorik
-                        break;
+                        case "4":
 
-                    case "5":
-                        //Ta ett lån
-                        break;
-                    case "6":
-                        Console.WriteLine("Tack för idag");
-                        QuitApp();
-                        break;
-                    default:
-                        Console.WriteLine("Välj 1-6");
-                        break;
+                            //visa kontohistorik
+                            break;
+
+                        case "5":
+                            //Ta ett lån
+                            break;
+                        case "6":
+                            Console.WriteLine("Tack för idag");
+                            QuitApp();
+                            break;
+                        default:
+                            Console.WriteLine("Välj 1-6");
+                            break;
+                    }
                 }
+                // else if sats om user== admin
             }
         }
-
     }
 }
