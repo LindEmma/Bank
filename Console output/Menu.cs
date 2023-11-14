@@ -10,7 +10,6 @@ namespace Bank.Console_output
             AnsiConsole.WriteLine("[1] Logga in");
             AnsiConsole.WriteLine("[2] Om oss");
             AnsiConsole.WriteLine("[3] Stäng sidan");
-            
             }
 
         public static void PrintCustomerMenu()
