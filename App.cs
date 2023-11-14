@@ -27,8 +27,9 @@ namespace Bank
                 //Console.Clear();
                 //Menu.PrintStartMenu();
 
-                // metod för att logga in
+                // metod för att logga in??
 
+                // Nedan är menyprogrammet när kunden är inloggad. 
                 Console.Clear();
                 Menu.PrintCustomerMenu();
                 
@@ -49,7 +50,7 @@ namespace Bank
 
                     case "3":
                         //Överför pengar
-                        CustomerMethods.Transfer(AccountList);
+                        Transfer.TransferFromAccount(AccountList);
                         break;
 
                     case "4":
