@@ -11,13 +11,22 @@ namespace Bank.Logic
     {
         public static LoginUser CreateUser()
         {
-            Console.Write("Användarnamn:");
-            string Username = Console.ReadLine();
-            Console.Write("Lösenord:");
-            string Password = Console.ReadLine();
+            string Username = "";
+            string Password = "";
+            while (String.IsNullOrEmpty(Username))
+            {
+                Console.Write("Användarnamn:");
+                Username = Console.ReadLine();
+                if(String.IsNullOrEmpty(Username)) Console.WriteLine("Du måste mata in något");
+            }
+            while (String.IsNullOrEmpty(Password))
+            {
+                Console.Write("Lösenord:");
+                Password = Console.ReadLine();
+                if (String.IsNullOrEmpty(Password)) Console.WriteLine("Du måste mata in något");
+            }
             Console.WriteLine("Ditt användarkonto är skapat!");
             return new LoginUser(Username, Password, false);
         }
-
     }
 }
