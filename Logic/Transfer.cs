@@ -31,9 +31,16 @@ namespace Bank.Logic
             Console.WriteLine("Hur mycket vill du föra över?");
             decimal amountOfMoney = ParseMethods.ReadDecimal();
 
-            fromAccount.Balance = fromAccount.Balance - amountOfMoney;
-            toAccount.Balance = toAccount.Balance + amountOfMoney;
-
+            if (amountOfMoney > fromAccount.Balance)
+            {
+                Console.WriteLine("Du kan inte låna mer pengar än vad som finns på kontot");
+                Console.ReadKey();
+            }
+            else
+            {
+                fromAccount.Balance = fromAccount.Balance - amountOfMoney;
+                toAccount.Balance = toAccount.Balance + amountOfMoney;
+            }
         }
     }
 }

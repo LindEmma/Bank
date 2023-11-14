@@ -9,10 +9,9 @@ namespace Bank.Console_output
             AnsiConsole.MarkupLine("[red]VÄLKOMMEN[/] TILL BANKEN");
             AnsiConsole.WriteLine("[1] Logga in");
             AnsiConsole.WriteLine("[2] Om oss");
-            AnsiConsole.WriteLine("[3] Stäng sidan");
-            
+            AnsiConsole.WriteLine("[3] Stäng sidan");            
         }
-
+      
         public static void PrintCustomerMenu()
         {
             MenuTitle();

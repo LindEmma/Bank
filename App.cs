@@ -9,6 +9,7 @@ namespace Bank
     {
         public bool RunApp { get; set; }
         private List<Account> AccountList { get; set; }
+        
 
         public App()
         {
@@ -88,8 +89,8 @@ namespace Bank
                     Console.WriteLine($"Error!");
 
                 }
+                // else if sats om user== admin
             }
         }
-
     }
 }
