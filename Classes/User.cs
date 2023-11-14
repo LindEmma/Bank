@@ -13,7 +13,7 @@ namespace Bank.Classes
         Customer,
         Invalid
     }
-    public abstract class User
+    public class User
     {
         protected Role Role { get;set; }
         protected string Username { get; set; }
