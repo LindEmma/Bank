@@ -5,7 +5,7 @@
         static void Main(string[] args)
         {
             App FoxBank = new(); //FoxBank object of App
-            FoxBank.Run(); //Run the program in App
+            FoxBank.Run(); //Runs the program in App
         }
     }
 }
