@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank.Classes
 {
-    internal class LoginUser
+    public class LoginUser
     {
         public string UserName { get; set; }
         public string Password { get; set; }
