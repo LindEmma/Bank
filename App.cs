@@ -30,10 +30,42 @@ namespace Bank
                 //Console.Clear();
                 //Menu.PrintStartMenu();
                 // metod för att logga in??
+
+                Console.Clear();
+                Menu.PrintStartMenu();
+
+                string startChoice = Console.ReadLine();
+                Console.Clear();
+
+                // Nedan är menyprogrammet när kunden är inloggad. 
+                Console.Clear();
+                Menu.PrintCustomerMenu();
+                
+                string customerChoice = Console.ReadLine();
+                switch (startChoice)
+                {
+                    case "1":
+                        if (Login())
+                        {
+                            usermeny();
+                        }
+                        break;
+
+                    case "2":
+                        Console.WriteLine("Tack för idag");
+                        QuitApp();
+                        break;
+
+                    default:
+                        Console.WriteLine("Välj 1 eller 2");
+                        break;
+                }
+
                 // Nedan är menyprogrammet när kunden är inloggad. 
                 Console.Clear();
                 Menu.PrintCustomerMenu();
                 try
+
                 {
                     int customerChoice = Convert.ToInt32(Console.ReadLine());
                     switch (customerChoice)
@@ -80,7 +112,6 @@ namespace Bank
 
                         default:
                             throw new InvalidOperationException("Invalid choice. Please choose 1-6.");
-                        
                     }
 
                 }
