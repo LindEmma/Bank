@@ -17,6 +17,7 @@ namespace Bank.Logic
             Console.Write("Lösenord:");
             string Password = Console.ReadLine();
             Console.WriteLine("Ditt användarkonto är skapat!");
+        
             return new User(Username, Password);
         }
 
