@@ -1,4 +1,5 @@
 ﻿using Bank.Classes;
+using Bank.Console_output;
 
 namespace Bank.Logic
 {
@@ -18,8 +19,7 @@ namespace Bank.Logic
                 if (AccountList.Count == 0||AccountList.Count==1)
                 {
                     Console.WriteLine("Du måste skapa minst två konton för att kunna göra en överföring");
-                    Console.WriteLine("\nTryck på valfri knapp för att gå tillbaka till menyn");
-                    Console.ReadKey();
+                    Menu.PressKey();
                     Run = false;
                 }
                 else
@@ -28,7 +28,6 @@ namespace Bank.Logic
                     CustomerMethods.PrintAccountNames(AccountList);
                     string transferFromAccount = Console.ReadLine();
                     var fromAccount = AccountList.Find(m => m.AccountName == transferFromAccount);
-
                     
                     Console.WriteLine("Vilket konto vill du föra över pengar till?");
                     AccountList.Remove(fromAccount);
@@ -76,17 +75,17 @@ namespace Bank.Logic
         {
             if (TransferHistory.Count == 0)
             {
-                Console.WriteLine("Det finns ingen historik att visa\nTryc på valfri knapp för att återgå till  menyn");
+                Console.WriteLine("Det finns ingen historik att visa");
             }
             else
             {
                 foreach (string logg in TransferHistory)
                 {
                     Console.WriteLine(logg);
-                    Console.WriteLine("\nTryck på valfri knapp för att gå tillbaka till menyn");
+                    
                 }
             }
-            Console.ReadKey();
+            Menu.PressKey();
         }
     }
 }
