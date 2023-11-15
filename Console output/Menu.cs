@@ -15,6 +15,7 @@ namespace Bank.Console_output
         public static void PrintCustomerMenu()
         {
             MenuTitle();
+            Console.WriteLine("Du är inloggad som kund\n");
             Console.WriteLine("1. Skapa ett konto");
             Console.WriteLine("2. Visa dina konton");
             Console.WriteLine("3. Överför pengar");
@@ -37,23 +38,29 @@ namespace Bank.Console_output
             
         }
 
-        public static void PrintLoginPage()
-        {
-            Console.WriteLine("Logga in som admin");
-            Console.WriteLine("Logga in som kund");
-            string userInput = Console.ReadLine();
-            switch(userInput)
-            {
-                case "1":
-                    AdminMenu();
-                    break;
-            }
-        }
+        //public static void PrintLoginPage()
+        //{
+        //    Console.WriteLine("Logga in som admin");
+        //    Console.WriteLine("Logga in som kund");
+        //    string userInput = Console.ReadLine();
+        //    switch(userInput)
+        //    {
+        //        case "1":
+        //            AdminMenu();
+        //            break;
+        //    }
+        //}
 
         public static void AdminMenu()
         {
+            Console.WriteLine("Du är inloggad som admin\n");
             Console.WriteLine("Skapa användare");
             Console.WriteLine("Logga ut");
+        }
+        public static void PressKey()
+        {
+            Console.WriteLine("\nTryck på valfri knapp för att gå tillbaka");
+            Console.ReadKey();
         }
         
 

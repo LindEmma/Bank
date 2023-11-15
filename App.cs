@@ -1,7 +1,6 @@
 ﻿using Bank.Classes;
 using Bank.Console_output;
 using Bank.Logic;
-using System.Linq.Expressions;
 
 namespace Bank
 {
@@ -12,7 +11,8 @@ namespace Bank
         private List<string> TransferHistory { get; set; }
         private LoginManager loginManager;
         private LoginHandler loginHandler;
-
+        private Transfer Transfer { get; set; }
+        public bool Login { get; set; }
 
         public App()
         {
@@ -21,29 +21,33 @@ namespace Bank
             TransferHistory = new List<string>();
             loginManager = new LoginManager();
             loginHandler = new LoginHandler();
+            Transfer = new Transfer();
+            Login = true;
         }
 
         public void QuitApp()
         {
             RunApp = false;
         }
-
+        public void LogOut()
+        {
+            Login = false;
+        }
         public void Run()
         {
-
             while (RunApp) // ==true
             {
-
                 Console.Clear();
                 Menu.PrintStartMenu();
                 string startChoice = Console.ReadLine();
                 Console.Clear();
-
+                Menu.MenuTitle();
 
                 switch (startChoice)
                 {
                     case "1":
                         LoginHandler.UserType userType = loginHandler.HandleLogin(loginManager);
+                        Console.Clear();
 
                         switch (userType)
                         {
@@ -53,68 +57,59 @@ namespace Bank
                                 break;
 
                             case LoginHandler.UserType.Regular:
-                                Menu.PrintCustomerMenu();
-                                try
+                                
+                                while (Login)
                                 {
+                                    Console.Clear();
+                                    Menu.PrintCustomerMenu();
                                     int customerChoice = ParseMethods.ReadInt();
+                                    Console.Clear();
+                                    Menu.MenuTitle();
                                     switch (customerChoice)
                                     {
                                         case 1:
                                             //skapar ett konto
-                                            Console.Clear();
-                                            Menu.MenuTitle();
                                             var newAccount = CustomerMethods.CreateAccount();
                                             AccountList.Add(newAccount);
                                             break;
 
-                                        case 2:
-                                            Console.Clear();
-                                            Menu.MenuTitle();
+                                        case 2:                                          
                                             //Visar användarens konton
                                             CustomerMethods.PrintAccountInfo(AccountList);
                                             break;
 
                                         case 3:
-                                            Console.Clear();
-                                            Menu.MenuTitle();
-                                            //Överför pengar
-                                            Transfer transfer = new Transfer();
-                                            transfer.TransferOwnAccounts(AccountList, TransferHistory);
+                                            
+                                            //Överför pengar                                           
+                                            Transfer.TransferOwnAccounts(AccountList, TransferHistory);
                                             break;
 
                                         case 4:
-                                            Console.Clear();
-                                            Menu.MenuTitle();
-                                            Transfer transferLogg = new Transfer();
-                                            transferLogg.TransferHistory(TransferHistory);
+                                           
+                                            Transfer.TransferHistory(TransferHistory);
                                             //visa kontohistorik
                                             break;
 
                                         case 5:
-                                            Console.Clear();
-                                            Menu.MenuTitle();
+                                            
                                             //Ta ett lån
                                             break;
                                         case 6:
-                                            Console.Clear();
-                                            Menu.MenuTitle();
                                             Console.WriteLine("Tack för idag!");
-                                            QuitApp();
+                                            LogOut();
                                             break;
 
                                         default:
                                             throw new InvalidOperationException("Vänligen välj 1-6");
                                     }
                                 }
-                                catch (Exception ec)
-                                {
-                                    Console.WriteLine($"Error!");
-                                }
+
                                 break;
 
                             case LoginHandler.UserType.None:
                                 Console.WriteLine("För många felaktiga login försök.");
                                 Environment.Exit(0);
+                                //QuitApp(); ??
                                 break;
                         }
                         break;
@@ -124,6 +119,7 @@ namespace Bank
                         QuitApp();
                         break;
 
+                        //titta på
                     default:
                         Console.WriteLine("Välj 1 eller 2");
                         break;

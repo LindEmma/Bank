@@ -1,4 +1,5 @@
 ﻿using Bank.Classes;
+using Bank.Console_output;
 
 namespace Bank.Logic
 {
@@ -12,8 +13,7 @@ namespace Bank.Logic
             Console.Write("Hur mycket pengar vill du lägga in på kontot? ");
             decimal Balance = ParseMethods.ReadDecimal();
             Console.WriteLine("Kontot har skapats!");
-            Console.WriteLine("\nTryck på valfri knapp för att fortsätta.");
-            Console.ReadKey();
+            Menu.PressKey();
             return new Account(Balance, AccountName);
         }
         //Loops through the info for each account, if AccountList is empty there is a message
@@ -32,8 +32,7 @@ namespace Bank.Logic
                     account.PrintAccountInfo();
                 }
             }
-            Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
-            Console.ReadKey();
+            Menu.PressKey();
         }
         
         // Shows the names only of accounts in AccountLists
