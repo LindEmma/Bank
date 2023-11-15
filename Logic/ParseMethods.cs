@@ -20,5 +20,15 @@ namespace Bank.Logic
             }
             return decNum;
         }
+
+        public static int ReadInt()
+        {
+            int intNum;
+            while (int.TryParse(Console.ReadLine(), out intNum)== false)
+            {
+                Console.WriteLine("try again");
+            }
+            return intNum;
+        }
     }
 }
