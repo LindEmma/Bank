@@ -6,7 +6,8 @@ namespace Bank.Console_output
     {
         public static void PrintStartMenu()
         {
-            AnsiConsole.MarkupLine("[red]VÄLKOMMEN[/] TILL BANKEN");
+            MenuTitle();
+            AnsiConsole.MarkupLine("[red]VÄLKOMMEN[/]");
             AnsiConsole.WriteLine("[1] Logga in");
             AnsiConsole.WriteLine("[2] Stäng sidan");
             }
