@@ -9,12 +9,14 @@ namespace Bank
     {
         public bool RunApp { get; set; }
         private List<Account> AccountList { get; set; }
-        
+        private List<string> TransferHistory { get; set; }
+
 
         public App()
         {
             RunApp = true;
             AccountList = new List<Account>();
+            TransferHistory = new List<string>();
         }
 
         public void QuitApp()
@@ -27,9 +29,6 @@ namespace Bank
             
             while (RunApp) // ==true
             {
-                //Console.Clear();
-                //Menu.PrintStartMenu();
-                // metod för att logga in??
 
                 Console.Clear();
                 Menu.PrintStartMenu();
@@ -37,18 +36,13 @@ namespace Bank
                 string startChoice = Console.ReadLine();
                 Console.Clear();
 
-                // Nedan är menyprogrammet när kunden är inloggad. 
-                Console.Clear();
-                Menu.PrintCustomerMenu();
-                
-                string customerChoice = Console.ReadLine();
                 switch (startChoice)
                 {
                     case "1":
-                        if (Login())
-                        {
-                            usermeny();
-                        }
+                        //if (Login())
+                        //{
+                        //    usermeny();
+                        //}
                         break;
 
                     case "2":
@@ -64,10 +58,9 @@ namespace Bank
                 // Nedan är menyprogrammet när kunden är inloggad. 
                 Console.Clear();
                 Menu.PrintCustomerMenu();
-                try
 
                 {
-                    int customerChoice = Convert.ToInt32(Console.ReadLine());
+                    int customerChoice = ParseMethods.ReadInt();
                     switch (customerChoice)
                     {
                         case 1:
@@ -82,19 +75,22 @@ namespace Bank
                             Console.Clear();
                             Menu.MenuTitle();
                             //Visar användarens konton
-                            CustomerMethods.ShowBalance(AccountList);
+                            CustomerMethods.PrintAccountInfo(AccountList);
                             break;
 
                         case 3:
                             Console.Clear();
                             Menu.MenuTitle();
                             //Överför pengar
-                            Transfer.TransferFromAccount(AccountList);
+                            Transfer transfer = new Transfer();
+                            transfer.TransferOwnAccounts(AccountList,TransferHistory);
                             break;
 
                         case 4:
                             Console.Clear();
                             Menu.MenuTitle();
+                            Transfer transferLogg = new Transfer();
+                            transferLogg.TransferHistory(TransferHistory);
                             //visa kontohistorik
                             break;
 
@@ -111,15 +107,11 @@ namespace Bank
                             break;
 
                         default:
-                            throw new InvalidOperationException("Invalid choice. Please choose 1-6.");
+                            throw new InvalidOperationException("Vänligen välj 1-6");
                     }
 
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error!");
-
-                }
+                
                 // else if sats om user== admin
             }
         }
