@@ -25,10 +25,11 @@ namespace Bank.Logic
             }
             else
             {
+                int NumberOfAccounts = AccountList.Count;
+                Console.WriteLine($"Antal konton: {NumberOfAccounts}\n");
+
                 foreach (var account in AccountList)
                 {
-                    int NumberOfAccounts = AccountList.Count;
-                    Console.WriteLine($"Antal konton: {NumberOfAccounts}\n");
                     account.PrintAccountInfo();
                 }
             }
