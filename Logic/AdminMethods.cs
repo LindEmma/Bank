@@ -1,4 +1,5 @@
 ﻿using Bank.Classes;
+using Bank.Console_output;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bank.Logic
 {
-    public class AdminMethods
+    public static class AdminMethods
     {
         public static LoginUser CreateUser()
         {
@@ -27,6 +28,7 @@ namespace Bank.Logic
             }
             Console.WriteLine("Ditt användarkonto är skapat!");
             return new LoginUser(Username, Password, false);
+            Menu.PressKey();
         }
     }
 }

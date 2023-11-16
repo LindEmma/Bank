@@ -51,11 +51,11 @@ namespace Bank.Console_output
         //    }
         //}
 
-        public static void AdminMenu()
+        public static void PrintAdminMenu()
         {
             Console.WriteLine("Du är inloggad som admin\n");
-            Console.WriteLine("Skapa användare");
-            Console.WriteLine("Logga ut");
+            Console.WriteLine("1. Skapa användare");
+            Console.WriteLine("2. Logga ut");
         }
         public static void PressKey()
         {

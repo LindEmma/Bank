@@ -52,8 +52,28 @@ namespace Bank
                         switch (userType)
                         {
                             case LoginHandler.UserType.Admin:
-                                Console.WriteLine("Admin Menyn");
-                                Console.ReadLine();
+
+                                while (Login)
+                                {
+                                    Console.Clear();
+                                    Menu.PrintAdminMenu();
+                                    int adminChoice = ParseMethods.ReadInt();
+                                    Console.Clear();
+                                    switch (adminChoice)
+                                    {
+                                        case 1:
+                                            var newUserAccount = AdminMethods.CreateUser();
+                                            _users.Add(newUserAccount);
+                                                break;
+
+                                        case 2:
+                                            Console.WriteLine("Tack för idag!");
+                                            LogOut();
+                                                break;
+                                    }
+                                    
+                                }
+
                                 break;
 
                             case LoginHandler.UserType.Regular:
