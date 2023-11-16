@@ -7,35 +7,31 @@ using Bank.Classes;
 
 namespace Bank
 {
-    internal class LoginManager
+    public class LoginManager
     {
-        public List<LoginUser> _users;
-        public int _loginAttempts;
-        public LoginUser _loggedInUser;
-        public LoginManager()
+        public List<LoginUser> users { get; set; }
+        public int loginAttempts { get; set; }
+        public LoginUser loggedInUser { get; set; }
+        public LoginManager(List<LoginUser> users)
         {
-            _users = new List<LoginUser>(); // Fyller på med users
-            _users.Add(new LoginUser("Frida", "Vinter2023", isAdmin: true));
-            _users.Add(new LoginUser("Tom", "Vinter2023"));
-            _users.Add(new LoginUser("Emma", "Vinter2023"));
-            _users.Add(new LoginUser("Gustav", "Vinter2023"));
-            _loginAttempts = 0;
-            _loggedInUser = null;
+            this.users = users;
+            loginAttempts = 0;
+            loggedInUser = null;
         }
         public bool Login(string username, string password)
         {
-            foreach (var user in _users)
+            foreach (var user in users)
             {
                 if (user.UserName == username && user.Password == password)
                 {
-                    _loggedInUser = user;
+                    loggedInUser = user;
                     return true;
                 }
             }
 
-            _loginAttempts++;
+            loginAttempts++;
 
-            if (_loginAttempts >= 3)
+            if (loginAttempts >= 3)
             {
                 Console.WriteLine("För många felaktiga login försök.");
                 Environment.Exit(0);
@@ -44,7 +40,7 @@ namespace Bank
         }
         public bool IsAdmin()
         {
-            return _loggedInUser != null && _loggedInUser.IsAdmin;
+            return loggedInUser != null && loggedInUser.IsAdmin;
         }
     }
 }

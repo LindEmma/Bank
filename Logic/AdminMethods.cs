@@ -28,7 +28,6 @@ namespace Bank.Logic
             }
             Console.WriteLine("Ditt användarkonto är skapat!");
             return new LoginUser(Username, Password, false);
-            Menu.PressKey();
         }
     }
 }

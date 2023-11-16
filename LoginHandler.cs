@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Bank.Classes;
 
 namespace Bank
 {
-    internal class LoginHandler
+    public class LoginHandler
     {
         public enum UserType
         {
@@ -15,7 +16,7 @@ namespace Bank
             Admin
         }
 
-        public UserType HandleLogin(LoginManager loginManager)
+        public UserType HandleLogin(List<LoginUser> users)
         {
 
             for (int i = 0; i < 3; i++)
@@ -25,10 +26,10 @@ namespace Bank
                 Console.WriteLine("Lösenord");
                 string password = Console.ReadLine();
 
-                bool success = loginManager.Login(userName, password);
+                bool success = Login(users, userName, password);
                 if (success)
                 {
-                    if (loginManager.IsAdmin())
+                    if (IsAdmin(users, userName))
                     {
                         return UserType.Admin;
                     }
@@ -45,6 +46,23 @@ namespace Bank
             }
 
             return UserType.None;
+        }
+        private bool Login(List<LoginUser> users, string username, string password)
+        {
+            foreach (var user in users)
+            {
+                if (user.UserName == username && user.Password == password)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool IsAdmin(List<LoginUser> users, string username)
+        {
+            var user = users.FirstOrDefault(u => u.UserName == username);
+            return user != null && user.IsAdmin;
         }
     }
 }
