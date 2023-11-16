@@ -14,6 +14,8 @@ namespace Bank.Console_output
       
         public static void PrintCustomerMenu()
         {
+            LoginHandler namn = new LoginHandler();
+            
             MenuTitle();
             Console.WriteLine("Du är inloggad som kund\n");
             Console.WriteLine("1. Skapa ett konto");

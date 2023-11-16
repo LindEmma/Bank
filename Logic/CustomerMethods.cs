@@ -17,7 +17,7 @@ namespace Bank.Logic
             return new Account(Balance, AccountName);
         }
         //Loops through the info for each account, if AccountList is empty there is a message
-        public static void PrintAccountInfo(List<Account> AccountList)
+        public static void PrintAccountInfoList(List<Account> AccountList)
         {
             if (AccountList.Count == 0)
             {
@@ -25,10 +25,11 @@ namespace Bank.Logic
             }
             else
             {
-                foreach (var account in AccountList)
-                {
-                    int NumberOfAccounts = AccountList.Count;
+                int NumberOfAccounts = AccountList.Count;
                     Console.WriteLine($"Antal konton: {NumberOfAccounts}\n");
+
+                foreach (var account in AccountList)
+                {                
                     account.PrintAccountInfo();
                 }
             }
