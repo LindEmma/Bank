@@ -9,6 +9,7 @@ namespace Bank
         public bool RunApp { get; set; }
         private List<Account> AccountList { get; set; }
         private List<string> TransferHistory { get; set; }
+        private List<LoginUser> Users { get; set; }
         private LoginManager loginManager;
         private LoginHandler loginHandler;
         private Transfer Transfer { get; set; }
@@ -19,10 +20,17 @@ namespace Bank
             RunApp = true;
             AccountList = new List<Account>();
             TransferHistory = new List<string>();
-            loginManager = new LoginManager();
+            Users = new List<LoginUser>
+            {
+                new LoginUser("Frida", "Vinter2023", isAdmin: true),
+                new LoginUser("Tom", "Vinter2023"),
+                new LoginUser("Emma", "Vinter2023"),
+                new LoginUser("Gustav", "Vinter2023")
+            };
             loginHandler = new LoginHandler();
             Transfer = new Transfer();
             Login = true;
+            loginManager = new LoginManager(Users);
         }
 
         public void QuitApp()
@@ -46,7 +54,7 @@ namespace Bank
                 switch (startChoice)
                 {
                     case "1":
-                        LoginHandler.UserType userType = loginHandler.HandleLogin(loginManager);
+                        LoginHandler.UserType userType = loginHandler.HandleLogin(loginManager.users);
                         Console.Clear();
 
                         switch (userType)
@@ -63,8 +71,9 @@ namespace Bank
                                     {
                                         case 1:
                                             var newUserAccount = AdminMethods.CreateUser();
-                                            _users.Add(newUserAccount);
-                                                break;
+                                            Users.Add(newUserAccount);
+                                            Login = true;
+                                            break;
 
                                         case 2:
                                             Console.WriteLine("Tack för idag!");
