@@ -11,7 +11,6 @@ namespace Bank
         private List<string> TransferHistory { get; set; }
         private List<LoginUser> Users { get; set; }
         private LoginManager loginManager;
-        private LoginHandler loginHandler;
         private Transfer Transfer { get; set; }
         public bool Login { get; set; }
 
@@ -27,7 +26,6 @@ namespace Bank
                 new LoginUser("Emma", "Vinter2023"),
                 new LoginUser("Gustav", "Vinter2023")
             };
-            loginHandler = new LoginHandler();
             Transfer = new Transfer();
             Login = true;
             loginManager = new LoginManager(Users);
@@ -54,12 +52,12 @@ namespace Bank
                 switch (startChoice)
                 {
                     case "1":
-                        LoginHandler.UserType userType = loginHandler.HandleLogin(loginManager.users);
+                        LoginManager.UserType userType = loginManager.HandleLogin();
                         Console.Clear();
 
                         switch (userType)
                         {
-                            case LoginHandler.UserType.Admin:
+                            case LoginManager.UserType.Admin:
 
                                 while (Login)
                                 {
@@ -85,7 +83,7 @@ namespace Bank
 
                                 break;
 
-                            case LoginHandler.UserType.Regular:
+                            case LoginManager.UserType.Regular:
                                 
                                 while (Login)
                                 {
@@ -135,7 +133,7 @@ namespace Bank
 
                                 break;
 
-                            case LoginHandler.UserType.None:
+                            case LoginManager.UserType.None:
                                 Console.WriteLine("För många felaktiga login försök.");
                                 Environment.Exit(0);
                                 //QuitApp(); ??
