@@ -9,38 +9,81 @@ namespace Bank
 {
     public class LoginManager
     {
-        public List<LoginUser> users { get; set; }
-        public int loginAttempts { get; set; }
-        public LoginUser loggedInUser { get; set; }
+        public List<LoginUser> Users { get; private set; }
+        public int LoginAttempts { get; private set; }
+        public LoginUser LoggedInUser { get; private set; }
+
         public LoginManager(List<LoginUser> users)
         {
-            this.users = users;
-            loginAttempts = 0;
-            loggedInUser = null;
+            Users = users;
+            LoginAttempts = 0;
+            LoggedInUser = null;
         }
-        public bool Login(string username, string password)
+
+        public enum UserType
         {
-            foreach (var user in users)
+            None,
+            Regular,
+            Admin
+        }
+
+        public UserType HandleLogin()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                Console.WriteLine("Användarnamn");
+                string userName = Console.ReadLine();
+                Console.WriteLine("Lösenord");
+                string password = Console.ReadLine();
+
+
+                bool success = Login(userName, password);
+                if (success)
+                {
+                    Console.WriteLine($"IsAdmin: {IsAdmin(userName)}");
+                    if (IsAdmin(userName))
+                    {
+                        return UserType.Admin;
+                    }
+                    else
+                    {
+                        return UserType.Regular;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Fel användarnamn eller lösenord, försök igen.");
+                }
+            }
+
+            return UserType.None;
+        }
+
+        private bool Login(string username, string password)
+        {
+            foreach (var user in Users)
             {
                 if (user.UserName == username && user.Password == password)
                 {
-                    loggedInUser = user;
+                    LoggedInUser = user;
                     return true;
                 }
             }
 
-            loginAttempts++;
+            LoginAttempts++;
 
-            if (loginAttempts >= 3)
+            if (LoginAttempts >= 3)
             {
                 Console.WriteLine("För många felaktiga login försök.");
                 Environment.Exit(0);
             }
             return false;
         }
-        public bool IsAdmin()
+
+        private bool IsAdmin(string username)
         {
-            return loggedInUser != null && loggedInUser.IsAdmin;
+            var user = Users.FirstOrDefault(u => u.UserName == username);
+            return user != null && user.IsAdmin;
         }
     }
 }
