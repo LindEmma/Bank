@@ -10,93 +10,154 @@ namespace Bank
     {
         public bool RunApp { get; set; }
         private List<Account> AccountList { get; set; }
-        
+        private List<string> TransferHistory { get; set; }
+        private List<LoginUser> Users { get; set; }
+        private LoginManager loginManager;
+        private Transfer Transfer { get; set; }
+        public bool Login { get; set; }
 
         public App()
         {
             RunApp = true;
             AccountList = new List<Account>();
+            TransferHistory = new List<string>();
+            Users = new List<LoginUser>
+            {
+                new LoginUser("Frida", "Vinter2023", isAdmin: true),
+                new LoginUser("Tom", "Vinter2023"),
+                new LoginUser("Emma", "Vinter2023"),
+                new LoginUser("Gustav", "Vinter2023")
+            };
+            Transfer = new Transfer();
+            Login = true;
+            loginManager = new LoginManager(Users);
         }
 
         public void QuitApp()
         {
             RunApp = false;
         }
-
+        public void LogOut()
+        {
+            Login = false;
+        }
         public void Run()
         {
-            
             while (RunApp) // ==true
             {
-                //Console.Clear();
-                //Menu.PrintStartMenu();
-                // metod för att logga in??
-                // Nedan är menyprogrammet när kunden är inloggad. 
                 Console.Clear();
-                Menu.PrintCustomerMenu();
-                try
+
+                Menu.PrintStartMenu();
+                string startChoice = Console.ReadLine();
+                Console.Clear();
+                Menu.MenuTitle();
+
+                switch (startChoice)
                 {
-                    int customerChoice = Convert.ToInt32(Console.ReadLine());
-                    switch (customerChoice)
-                    {
-                        case 1:
-                            //skapar ett konto
-                            Console.Clear ();
-                            Menu.MenuTitle();
-                            var newAccount = CustomerMethods.CreateAccount();
-                            AccountList.Add(newAccount);
-                            break;
+                    case "1":
+                        LoginManager.UserType userType = loginManager.HandleLogin();
+                        Console.Clear();
 
-                        case 2:
-                            Console.Clear();
-                            Menu.MenuTitle();
-                            //Visar användarens konton
-                            CustomerMethods.ShowBalance(AccountList);
-                            break;
+                        switch (userType)
+                        {
+                            case LoginManager.UserType.Admin:
 
-                        case 3:
-                            Console.Clear();
-                            Menu.MenuTitle();
-                            //Överför pengar
-                            Transfer.TransferFromAccount(AccountList);
-                            break;
+                                while (Login)
+                                {
+                                    Console.Clear();
+                                    Menu.PrintAdminMenu();
+                                    int adminChoice = ParseMethods.ReadInt();
+                                    Console.Clear();
+                                    switch (adminChoice)
+                                    {
+                                        case 1:
+                                            var newUserAccount = AdminMethods.CreateUser();
+                                            Users.Add(newUserAccount);
+                                            Login = true;
+                                            break;
 
-                        case 4:
-                            Console.Clear();
-                            Menu.MenuTitle();
-                            //visa kontohistorik
-                            break;
+                                        case 2:
+                                            Console.WriteLine("Tack för idag!");
+                                            LogOut();
+                                            break;
+                                    }                                    
+                                }
+                                break;
 
-                        case 5:
-                            Console.Clear();
-                            Menu.MenuTitle();
-                            CustomerMethods.TakeLoanToAccount(AccountList);
-                            //Ta ett lån
-                            break;
-                        case 6:
-                            Console.Clear();
-                            CustomerMethods.PrintLoan(AccountList);
-                            Menu.MenuTitle();
-                            break;
+                            case LoginManager.UserType.Regular:
+                                
+                                while (Login)
+                                {
+                                    Console.Clear();
+                                    Menu.PrintCustomerMenu();
+                                    int customerChoice = ParseMethods.ReadInt();
+                                    Console.Clear();
+                                    Menu.MenuTitle();
+                                    switch (customerChoice)
+                                    {
+                                        case 1:
+                                            //skapar ett konto
+                                            var newAccount = CustomerMethods.CreateAccount();
+                                            AccountList.Add(newAccount);
+                                            break;
 
-                        case 7:
-                            QuitApp();
-                            Console.WriteLine("Tryck valfri knapp för att avsluta programmet!");
+                                        case 2:                                          
+                                            //Visar användarens konton
+                                            CustomerMethods.PrintAccountInfo(AccountList);
+                                            break;
+
+                                        case 3:                                            
+                                            //Överför pengar                                           
+                                            Transfer.TransferOwnAccounts(AccountList, TransferHistory);
+                                            break;
+
+                                        case 4                                           
+                                            Transfer.TransferHistory(TransferHistory);
+                                            //visa kontohistorik
+                                            break;
+
+                                         case 5:
+                                            Console.Clear();
+                                            Menu.MenuTitle();
+                                            CustomerMethods.TakeLoanToAccount(AccountList);
+                                            //Ta ett lån
+                                            break;
+                                        
+                                          case 6:
+                                           Console.Clear();
+                                           CustomerMethods.PrintLoan(AccountList);
+                                           Menu.MenuTitle();
+                                           break;
+
+                                          case 7:
+                                           LogOut();
+                                           Console.WriteLine("Tryck valfri knapp för att logga ut!");
+                                           break;
+                                    }
+                                }
+
+                                break;
+
+                            case LoginManager.UserType.None:
+                                Console.WriteLine("För många felaktiga login försök.");
+                                Environment.Exit(0);
+                                //QuitApp(); ??
+                                break;
+                        }
                         break;
 
-                        default:
-                            throw new InvalidOperationException("Invalid choice. Please choose 1-6.");
-                            
-                    }
+                    case "2":
+                        Console.WriteLine("Tack för idag");
+                        QuitApp();
+                        break;
 
+                        //titta på
+                    default:
+                        Console.WriteLine("Välj 1 eller 2");
+                        break;
                 }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error!");
-
-                }
-                // else if sats om user== admin
             }
         }
     }
 }
+

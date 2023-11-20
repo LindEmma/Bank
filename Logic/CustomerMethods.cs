@@ -1,10 +1,5 @@
 ﻿using Bank.Classes;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Bank.Console_output;
 
 namespace Bank.Logic
 {
@@ -18,13 +13,11 @@ namespace Bank.Logic
             Console.Write("Hur mycket pengar vill du lägga in på kontot? ");
             decimal Balance = ParseMethods.ReadDecimal();
             Console.WriteLine("Kontot har skapats!");
-            Console.WriteLine("\nTryck på valfri knapp för att fortsätta.");
-            Console.ReadKey();
+            Menu.PressKey();
             return new Account(Balance, AccountName);
         }
-
         //Loops through the info for each account, if AccountList is empty there is a message
-        public static void ShowBalance(List<Account> AccountList)
+        public static void PrintAccountInfo(List<Account> AccountList)
         {
             if (AccountList.Count == 0)
             {
@@ -32,23 +25,19 @@ namespace Bank.Logic
             }
             else
             {
+                int NumberOfAccounts = AccountList.Count;
+                Console.WriteLine($"Antal konton: {NumberOfAccounts}\n");
+
                 foreach (var account in AccountList)
                 {
                     account.PrintAccountInfo();
                 }
             }
-            Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
-            Console.ReadKey();
-        } 
-       
-
-        // shows history of bank transfers
-        public static void AccountHistory()
-        {
-
+            Menu.PressKey();
         }
+        
         // Shows the names only of accounts in AccountLists
-        public static void AccountNameList(List<Account> accounts)
+        public static void PrintAccountNames(List<Account> accounts)
         {
             foreach (var accountName in accounts)
             {
