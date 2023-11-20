@@ -14,8 +14,8 @@ namespace Bank.Logic
         // Method to transfer money between users own accounts
         public void TransferOwnAccounts(List<Account> AccountList, List<string> TransferHistory)
         {
-            DateTime dt = new DateTime();
-            dt = DateTime.Now;
+            DateTime date = DateTime.Now;
+            var shortDate = date.ToString("yyyy-MM-dd HH:mm");
 
             //If there is 0-1 accounts, a transfer cannot be made
             if (AccountList.Count == 0 || AccountList.Count == 1)
@@ -51,43 +51,14 @@ namespace Bank.Logic
                 {
                     fromAccount.Balance = fromAccount.Balance - amountOfMoney;
                     toAccount.Balance = toAccount.Balance + amountOfMoney;
-                    Console.WriteLine("Överföringen är lyckad!");
+                    Console.Clear();
+                    Console.WriteLine("Öveföringen godkänd!\n");
+                    string logg = $"{shortDate}\nFrån: {fromAccount.AccountName}\nTill {toAccount.AccountName}\nBelopp: -{amountOfMoney}";
+                    Console.WriteLine($"Kvittens\nÖverföring {logg}");
 
-                    //Jobba in datetime??
-                    TransferHistory.Add($"{fromAccount.AccountName} - {amountOfMoney}kr\n{toAccount.AccountName} + {amountOfMoney}kr\n{dt}");
+                    TransferHistory.Add(logg);
                 }
                 Menu.PressKey();
-
-                // var choice = AnsiConsole.Prompt(
-                // new SelectionPrompt<string>().Title("\nVill du göra en ny överföring? j/n")
-                //.PageSize(4)
-                //.MoreChoicesText("[grey](Move up and down to reveal more fruits)[/]")
-                //.AddChoices(new[] {
-                //"ja", "Återgå till menyn",
-                // }));
-                // if (choice == "Återgå till menyn")
-                // {
-                //     Run = false;
-                // }
-                // else
-                // {
-                //     Console.Clear();
-                // }
-                //Console.WriteLine("Vill du göra en ny överföring? j/n");
-                //string answer = Console.ReadLine();
-                //switch (answer)
-                //{
-                //    case "j":
-                //    case "J":
-                //        break;
-                //    case "n":
-                //    case "N":
-                //        Run = false;
-                //        break;
-                //    default:
-                //        Console.WriteLine("Vänligen välj j/n");
-                //        break;
-                //}
             }
         }
         // shows history of bank transfers
@@ -102,10 +73,11 @@ namespace Bank.Logic
                 foreach (string logg in TransferHistory)
                 {
                     Console.WriteLine(logg);
+                    Console.WriteLine("------------------\n");
                 }
             }
             Menu.PressKey();
         }
     }
 }
-}
+
