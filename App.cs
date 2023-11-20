@@ -1,6 +1,8 @@
 ﻿using Bank.Classes;
 using Bank.Console_output;
 using Bank.Logic;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace Bank
 {
@@ -44,6 +46,7 @@ namespace Bank
             while (RunApp) // ==true
             {
                 Console.Clear();
+
                 Menu.PrintStartMenu();
                 string startChoice = Console.ReadLine();
                 Console.Clear();
@@ -76,11 +79,9 @@ namespace Bank
                                         case 2:
                                             Console.WriteLine("Tack för idag!");
                                             LogOut();
-                                                break;
-                                    }
-                                    
+                                            break;
+                                    }                                    
                                 }
-
                                 break;
 
                             case LoginManager.UserType.Regular:
@@ -105,29 +106,33 @@ namespace Bank
                                             CustomerMethods.PrintAccountInfo(AccountList);
                                             break;
 
-                                        case 3:
-                                            
+                                        case 3:                                            
                                             //Överför pengar                                           
                                             Transfer.TransferOwnAccounts(AccountList, TransferHistory);
                                             break;
 
-                                        case 4:
-                                           
+                                        case 4                                           
                                             Transfer.TransferHistory(TransferHistory);
                                             //visa kontohistorik
                                             break;
 
-                                        case 5:
-                                            
+                                         case 5:
+                                            Console.Clear();
+                                            Menu.MenuTitle();
+                                            CustomerMethods.TakeLoanToAccount(AccountList);
                                             //Ta ett lån
                                             break;
-                                        case 6:
-                                            Console.WriteLine("Tack för idag!");
-                                            LogOut();
-                                            break;
+                                        
+                                          case 6:
+                                           Console.Clear();
+                                           CustomerMethods.PrintLoan(AccountList);
+                                           Menu.MenuTitle();
+                                           break;
 
-                                        default:
-                                            throw new InvalidOperationException("Vänligen välj 1-6");
+                                          case 7:
+                                           LogOut();
+                                           Console.WriteLine("Tryck valfri knapp för att logga ut!");
+                                           break;
                                     }
                                 }
 
