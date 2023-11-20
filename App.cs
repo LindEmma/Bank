@@ -43,23 +43,25 @@ namespace Bank
         }
         public void Run()
         {
-            while (RunApp) // ==true
+            while (RunApp)
             {
                 Console.Clear();
 
                 Menu.PrintStartMenu();
-                string startChoice = Console.ReadLine();
+                int startChoice = ParseMethods.ReadInt();
                 Console.Clear();
                 Menu.MenuTitle();
 
-                switch (startChoice)
+                switch (startChoice) //if else ist??
                 {
-                    case "1":
+                    case 1:
+                        Login = true;
                         LoginManager.UserType userType = loginManager.HandleLogin();
                         Console.Clear();
-
+                        
                         switch (userType)
                         {
+                            
                             case LoginManager.UserType.Admin:
 
                                 while (Login)
@@ -68,12 +70,12 @@ namespace Bank
                                     Menu.PrintAdminMenu();
                                     int adminChoice = ParseMethods.ReadInt();
                                     Console.Clear();
+                                    Menu.MenuTitle();
                                     switch (adminChoice)
                                     {
                                         case 1:
                                             var newUserAccount = AdminMethods.CreateUser();
                                             Users.Add(newUserAccount);
-                                            Login = true;
                                             break;
 
                                         case 2:
@@ -111,31 +113,30 @@ namespace Bank
                                             Transfer.TransferOwnAccounts(AccountList, TransferHistory);
                                             break;
 
-                                        case 4                                           
+                                        case 4:                                          
                                             Transfer.TransferHistory(TransferHistory);
                                             //visa kontohistorik
                                             break;
 
                                          case 5:
-                                            Console.Clear();
-                                            Menu.MenuTitle();
                                             CustomerMethods.TakeLoanToAccount(AccountList);
                                             //Ta ett lån
                                             break;
                                         
-                                          case 6:
-                                           Console.Clear();
+                                          case 6:                                         
                                            CustomerMethods.PrintLoan(AccountList);
-                                           Menu.MenuTitle();
                                            break;
 
                                           case 7:
                                            LogOut();
                                            Console.WriteLine("Tryck valfri knapp för att logga ut!");
                                            break;
+                                        default:
+                                            Console.WriteLine("Vänligen välj 1-7");
+                                            //Readkey???
+                                            break;
                                     }
                                 }
-
                                 break;
 
                             case LoginManager.UserType.None:
@@ -146,14 +147,14 @@ namespace Bank
                         }
                         break;
 
-                    case "2":
+                    case 2:
                         Console.WriteLine("Tack för idag");
                         QuitApp();
                         break;
 
-                        //titta på
                     default:
                         Console.WriteLine("Välj 1 eller 2");
+                        //Readkey??
                         break;
                 }
             }

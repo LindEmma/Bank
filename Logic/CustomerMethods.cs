@@ -47,7 +47,7 @@ namespace Bank.Logic
         public static decimal TakeLoanToAccount(List<Account> AccountList) //Method that let user take loan
         {
             Console.WriteLine("Välj ett konto att ta ett lån till:");
-            AccountNameList(AccountList); // Display the names of existing accounts
+            PrintAccountNames(AccountList); // Display the names of existing accounts
             Console.Write("Ange kontonamnet för det konto du vill ta ett lån till: "); // Ask the user to select an account
             string selectedAccountName = Console.ReadLine();
             Account selectedAccount = AccountList.Find(account => account.AccountName == selectedAccountName.ToLower());
