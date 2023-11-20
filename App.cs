@@ -1,6 +1,7 @@
 ﻿using Bank.Classes;
 using Bank.Console_output;
 using Bank.Logic;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Bank
@@ -69,18 +70,23 @@ namespace Bank
                         case 5:
                             Console.Clear();
                             Menu.MenuTitle();
+                            CustomerMethods.TakeLoanToAccount(AccountList);
                             //Ta ett lån
                             break;
                         case 6:
                             Console.Clear();
+                            CustomerMethods.PrintLoan(AccountList);
                             Menu.MenuTitle();
-                            Console.WriteLine("Tack för idag!");
-                            QuitApp();
                             break;
+
+                        case 7:
+                            QuitApp();
+                            Console.WriteLine("Tryck valfri knapp för att avsluta programmet!");
+                        break;
 
                         default:
                             throw new InvalidOperationException("Invalid choice. Please choose 1-6.");
-                        
+                            
                     }
 
                 }

@@ -10,6 +10,8 @@ namespace Bank.Classes
     {
         public decimal Balance { get; set; }
         public string AccountName { get; set; }
+        public List<Loan> Loans { get; set; } = new List<Loan>();
+
 
         public Account(decimal balance, string accountName)
         {
@@ -20,8 +22,7 @@ namespace Bank.Classes
         // method that prints the accounts info (balance and account name)
         public void PrintAccountInfo()
         {
-            Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance}\n" +
-                $"-------------------------");
+            Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance}\n");
         }
 
         // prints only the name of the account
@@ -29,5 +30,16 @@ namespace Bank.Classes
         {
             Console.WriteLine(AccountName);
         }
+        public bool HasLoans()
+        {
+            return Loans.Any();
+        }
+    }
+    public class Loan
+    {
+        public decimal Amount { get; set; }
+        public string Purpose { get; set; }
+        public int DurationMonths { get; set; }
+
     }
 }
