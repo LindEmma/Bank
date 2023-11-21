@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Bank.Logic
 {
     //Handles conversion from string to int and decimal
+    // useful in other methods
     public static class ParseMethods
     {
         public static decimal ReadDecimal()

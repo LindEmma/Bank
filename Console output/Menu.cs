@@ -4,6 +4,8 @@ namespace Bank.Console_output
 {
     static public class Menu
     {
+        // Different menu outputs for different logins
+        // + some good to have short cuts
         public static void PrintStartMenu()
         {
             MenuTitle();
