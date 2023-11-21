@@ -1,8 +1,6 @@
 ﻿using Bank.Classes;
 using Bank.Console_output;
 using Bank.Logic;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace Bank
 {
@@ -61,7 +59,6 @@ namespace Bank
                         
                         switch (userType)
                         {
-                            
                             case LoginManager.UserType.Admin:
 
                                 while (Login)
@@ -99,7 +96,7 @@ namespace Bank
                                     {
                                         case 1:
                                             //skapar ett konto
-                                            var newAccount = CustomerMethods.CreateAccount();
+                                            var newAccount = CustomerMethods.CreateAccount(AccountList);
                                             AccountList.Add(newAccount);
                                             break;
 

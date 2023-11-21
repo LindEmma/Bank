@@ -5,11 +5,13 @@ namespace Bank.Logic
 {
     internal class Transfer
     {
-        public bool Run { get; set; }
+        public string transferToAccount { get; set; }
+        public string transferFromAccount { get; set; }
 
         public Transfer()
         {
-            Run = true;
+            transferFromAccount = "";
+            transferToAccount = "";
         }
         // Method to transfer money between users own accounts
         public void TransferOwnAccounts(List<Account> AccountList, List<string> TransferHistory)
@@ -22,30 +24,53 @@ namespace Bank.Logic
             {
                 Console.WriteLine("Du måste skapa minst två konton för att kunna göra en överföring");
                 Menu.PressKey();
-                //Run = false;
             }
             else
             {
-                //felhantera, så att anv måste skriva någonting
-                Console.WriteLine("Vilket konto vill du föra över pengar från?");
-                CustomerMethods.PrintAccountNames(AccountList);
-                string transferFromAccount = Console.ReadLine();
-                var fromAccount = AccountList.Find(m => m.AccountName == transferFromAccount);
 
-                Console.WriteLine("Vilket konto vill du föra över pengar till?");
-                AccountList.Remove(fromAccount);
-                CustomerMethods.PrintAccountNames(AccountList);
-                string transferToAccount = Console.ReadLine();
+                //var fromAccount = AccountList.Find(m => m.AccountName == transferFromAccount);
+                do
+                {
+                    Console.WriteLine("Vilket konto vill du föra över pengar från? ");
+                    CustomerMethods.PrintAccountNames(AccountList);
+                    transferFromAccount = Console.ReadLine();
+                    Menu.ClearTitle();
+
+                    if (String.IsNullOrEmpty(transferFromAccount) || !AccountList.Exists(x => x.AccountName == transferFromAccount))
+                    {
+                        Console.WriteLine("\nVälj ett konto i listan\n");
+                    }
+                }
+
+                while (String.IsNullOrEmpty(transferFromAccount) || !AccountList.Exists(x => x.AccountName == transferFromAccount));
+
+                var fromAccount = AccountList.Find(f => f.AccountName == transferFromAccount);
+
+                do
+                {
+                    Console.WriteLine("Vilket konto vill du föra över pengar till? ");
+                    AccountList.Remove(fromAccount);
+                    CustomerMethods.PrintAccountNames(AccountList);
+                    transferToAccount = Console.ReadLine();
+                    Menu.ClearTitle();
+
+                    if (String.IsNullOrEmpty(transferFromAccount) || !AccountList.Exists(x => x.AccountName == transferToAccount))
+                    {
+                        Console.WriteLine("\nVälj ett konto i listan\n");
+                    }
+                }
+                while (String.IsNullOrEmpty(transferFromAccount) || !AccountList.Exists(x => x.AccountName == transferToAccount));
+
                 AccountList.Add(fromAccount);
 
                 var toAccount = AccountList.Find(t => t.AccountName == transferToAccount);
 
-                Console.WriteLine("Hur mycket vill du föra över?");
+                Console.WriteLine("Hur mycket vill du föra över? (i SEK) ");
                 decimal amountOfMoney = ParseMethods.ReadDecimal();
 
                 if (amountOfMoney > fromAccount.Balance)
                 {
-                    Console.WriteLine("Du kan inte låna mer pengar än vad som finns på kontot");
+                    Console.WriteLine("Du kan inte överföra mer pengar än vad som finns på kontot");
                 }
                 else
                 {
@@ -53,7 +78,7 @@ namespace Bank.Logic
                     toAccount.Balance = toAccount.Balance + amountOfMoney;
                     Console.Clear();
                     Console.WriteLine("Öveföringen godkänd!\n");
-                    string logg = $"{shortDate}\nFrån: {fromAccount.AccountName}\nTill {toAccount.AccountName}\nBelopp: -{amountOfMoney}";
+                    string logg = $"{shortDate}\nFrån: {fromAccount.AccountName}\nTill {toAccount.AccountName}\nBelopp: -{amountOfMoney} SEK";
                     Console.WriteLine($"Kvittens\nÖverföring {logg}");
 
                     TransferHistory.Add(logg);
@@ -61,6 +86,7 @@ namespace Bank.Logic
                 Menu.PressKey();
             }
         }
+
         // shows history of bank transfers
         public void TransferHistory(List<string> TransferHistory)
         {
@@ -80,4 +106,8 @@ namespace Bank.Logic
         }
     }
 }
+
+
+
+
 
