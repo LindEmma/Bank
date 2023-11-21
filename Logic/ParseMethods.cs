@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank.Logic
 {
-    // Felhanterar typkonvertering från string till decimal. 
-    // För att använda i annan klass, skriv:
-    // decimal userInput = ParseMethods.ReadDecimal();
+    //Handles conversion from string to int and decimal
     public static class ParseMethods
     {
         public static decimal ReadDecimal()
@@ -16,7 +14,7 @@ namespace Bank.Logic
             decimal decNum;
             while (decimal.TryParse(Console.ReadLine(), out decNum) == false)
             {
-                Console.WriteLine("Try again");
+                Console.WriteLine("Skriv ett tal med eller utan decimaler");
             }
             return decNum;
         }
@@ -26,7 +24,7 @@ namespace Bank.Logic
             int intNum;
             while (int.TryParse(Console.ReadLine(), out intNum)== false)
             {
-                Console.WriteLine("try again");
+                Console.WriteLine("Skriv ett heltal");
             }
             return intNum;
         }

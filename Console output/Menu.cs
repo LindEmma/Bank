@@ -10,11 +10,11 @@ namespace Bank.Console_output
             AnsiConsole.MarkupLine("[red]VÄLKOMMEN[/]");
             AnsiConsole.WriteLine("[1] Logga in");
             AnsiConsole.WriteLine("[2] Stäng sidan");
-            }
-      
+        }
         public static void PrintCustomerMenu()
         {
             MenuTitle();
+            Console.WriteLine();
             Console.WriteLine("Du är inloggad som kund\n");
             Console.WriteLine("[1] Skapa ett konto");
             Console.WriteLine("[2] Visa dina konton");
@@ -24,9 +24,15 @@ namespace Bank.Console_output
             Console.WriteLine("[6] Se dina lån");
             Console.WriteLine("[7] Logga ut");
         }
+        public static void PrintAdminMenu()
+        {
+            MenuTitle();
+            Console.WriteLine("Du är inloggad som admin\n");
+            Console.WriteLine("[1] Skapa användare");
+            Console.WriteLine("[2] Logga ut");
+        }
         public static void MenuTitle()
         {
-
             Console.Write("  ______          ____              _    " +
                 "\r\n |  ____|        |  _ \\            | |   \r\n " +
                 "| |__ _____  __ | |_) | __ _ _ __ | | __\r\n |  __/ _ " +
@@ -36,22 +42,16 @@ namespace Bank.Console_output
                 "__/ \\__,_|_| |_|_|\\_\\\r\n                       " +
                 "                " +
                 "  \r\n");
-            
-        }
-
-        public static void PrintAdminMenu()
-        {
-            MenuTitle();
-            Console.WriteLine("Du är inloggad som admin\n");
-            Console.WriteLine("1. Skapa användare");
-            Console.WriteLine("2. Logga ut");
         }
         public static void PressKey()
         {
             Console.WriteLine("\nTryck på valfri knapp för att gå tillbaka");
             Console.ReadKey();
         }
-        
-
+        public static void ClearTitle()
+        {
+            Console.Clear();
+            Menu.MenuTitle();
+        }
     }
 }
