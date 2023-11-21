@@ -71,7 +71,7 @@ namespace Bank
                                     switch (adminChoice)
                                     {
                                         case 1:
-                                            var newUserAccount = AdminMethods.CreateUser();
+                                            var newUserAccount = AdminMethods.CreateUser(); //Skapar användare, men användaren är "samma" med samma bankkonton oavsett vem som loggar in
                                             Users.Add(newUserAccount);
                                             break;
 
@@ -116,8 +116,8 @@ namespace Bank
                                             break;
 
                                          case 5:
-                                            CustomerMethods.TakeLoanToAccount(AccountList);
-                                            //Ta ett lån
+                                            CustomerMethods.TakeLoanToAccount(AccountList); //Lånen blir max 5 ggr det som finns på kontot inkl lån = anv kan låna hur mycket som helst i hur många mån som helst
+                                            //problem att låna om man har 0 på kontot, evighetsloop.
                                             break;
                                         
                                           case 6:                                         
@@ -130,7 +130,6 @@ namespace Bank
                                            break;
                                         default:
                                             Console.WriteLine("Vänligen välj 1-7");
-                                            //Readkey???
                                             break;
                                     }
                                 }

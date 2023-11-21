@@ -4,6 +4,8 @@ namespace Bank.Console_output
 {
     static public class Menu
     {
+        // Different menu outputs for different logins
+        // + some good to have short cuts
         public static void PrintStartMenu()
         {
             MenuTitle();
@@ -15,8 +17,8 @@ namespace Bank.Console_output
         {
             MenuTitle();
             Console.WriteLine();
-            Console.WriteLine("Du är inloggad som kund\n");
-            Console.WriteLine("[1] Skapa ett konto");
+            AnsiConsole.MarkupLine("[blue]Du är inloggad som kund[/]\n");
+            Console.WriteLine("[1] Öppna ett bankkonto");
             Console.WriteLine("[2] Visa dina konton");
             Console.WriteLine("[3] Överför pengar");
             Console.WriteLine("[4] Visa kontohistorik");
@@ -27,13 +29,13 @@ namespace Bank.Console_output
         public static void PrintAdminMenu()
         {
             MenuTitle();
-            Console.WriteLine("Du är inloggad som admin\n");
-            Console.WriteLine("[1] Skapa användare");
+            AnsiConsole.MarkupLine("[green]Du är inloggad som admin[/]\n");
+            Console.WriteLine("[1] Skapa ny användare");
             Console.WriteLine("[2] Logga ut");
         }
         public static void MenuTitle()
         {
-            Console.Write("  ______          ____              _    " +
+            AnsiConsole.Markup("[orangered1]  ______          ____              _    " +
                 "\r\n |  ____|        |  _ \\            | |   \r\n " +
                 "| |__ _____  __ | |_) | __ _ _ __ | | __\r\n |  __/ _ " +
                 "\\ \\/ / |  _ < / _` | '_ \\| |/ /" +
@@ -41,7 +43,7 @@ namespace Bank.Console_output
                 "_) | (_| | | | |   < \r\n |_|  \\___/_/\\_\\ |__" +
                 "__/ \\__,_|_| |_|_|\\_\\\r\n                       " +
                 "                " +
-                "  \r\n");
+                "  \r\n[/]");
         }
         public static void PressKey()
         {
