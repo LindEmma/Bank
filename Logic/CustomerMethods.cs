@@ -7,7 +7,7 @@ namespace Bank.Logic
     {
 
         // method that lets the user create a new Account. Adds it to AccountList.
-        public static Account CreateAccount(List<Account> AccountList)
+        public static BankAccount CreateAccount(List<BankAccount> AccountList)
         {
             string AccountName = "";
             decimal Balance;
@@ -40,11 +40,11 @@ namespace Bank.Logic
 
             Console.WriteLine("\nKontot har skapats!");
             Menu.PressKey();
-            return new Account(Balance, AccountName); //returns new Account
+            return new BankAccount(Balance, AccountName); //returns new Account
 
         }
         //Loops through the info for each account, if AccountList is empty there is a message
-        public static void PrintAccountInfo(List<Account> AccountList)
+        public static void PrintAccountInfo(List<BankAccount> AccountList)
         {
             if (AccountList.Count == 0)
             {
@@ -64,7 +64,7 @@ namespace Bank.Logic
         }
 
         // Shows the names only of accounts in AccountLists
-        public static void PrintAccountNames(List<Account> accounts)
+        public static void PrintAccountNames(List<BankAccount> accounts)
         {
             foreach (var accountName in accounts)
             {
@@ -72,7 +72,5 @@ namespace Bank.Logic
             }
             Console.WriteLine();
         }
-       
-
     }
 }

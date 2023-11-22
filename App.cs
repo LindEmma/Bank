@@ -7,7 +7,7 @@ namespace Bank
     internal class App
     {
         public bool RunApp { get; set; }
-        private List<Account> AccountList { get; set; }
+        private List<BankAccount> AccountList { get; set; }
         private List<string> TransferHistory { get; set; }
         private List<LoginUser> Users { get; set; }
         private LoginManager loginManager;
@@ -17,7 +17,7 @@ namespace Bank
         public App()
         {
             RunApp = true;
-            AccountList = new List<Account>();
+            AccountList = new List<BankAccount>();
             TransferHistory = new List<string>();
             Users = new List<LoginUser>
             {
@@ -43,14 +43,14 @@ namespace Bank
         {
             while (RunApp)
             {
+                // start menu - with choice to log in or exit program
                 Console.Clear();
-
                 Menu.PrintStartMenu();
                 int startChoice = ParseMethods.ReadInt();
                 Console.Clear();
                 Menu.MenuTitle();
 
-                switch (startChoice) //if else ist??
+                switch (startChoice)
                 {
                     case 1:
                         Login = true;
@@ -61,6 +61,7 @@ namespace Bank
                         {
                             case LoginManager.UserType.Admin:
 
+                                //logged in as admin
                                 while (Login)
                                 {
                                     Console.Clear();
@@ -71,11 +72,13 @@ namespace Bank
                                     switch (adminChoice)
                                     {
                                         case 1:
-                                            var newUserAccount = AdminMethods.CreateUser(); //Skapar användare, men användaren är "samma" med samma bankkonton oavsett vem som loggar in
+                                            // lets admin create new customer user account
+                                            var newUserAccount = AdminMethods.CreateUser();
                                             Users.Add(newUserAccount);
                                             break;
 
                                         case 2:
+                                            // log out to start menu
                                             Console.WriteLine("Tack för idag!");
                                             LogOut();
                                             break;
@@ -85,8 +88,9 @@ namespace Bank
 
                             case LoginManager.UserType.Regular:
                                 
+                                //logged in as customer
                                 while (Login)
-                                {
+                                { 
                                     Console.Clear();
                                     Menu.PrintCustomerMenu();
                                     int customerChoice = ParseMethods.ReadInt();
@@ -95,39 +99,41 @@ namespace Bank
                                     switch (customerChoice)
                                     {
                                         case 1:
-                                            //skapar ett konto
+                                            //Opens new savings account
                                             var newAccount = CustomerMethods.CreateAccount(AccountList);
                                             AccountList.Add(newAccount);
                                             break;
 
-                                        case 2:                                          
-                                            //Visar användarens konton
+                                        case 2:                        
+                                            //Shows info of all bank accounts
                                             CustomerMethods.PrintAccountInfo(AccountList);
                                             break;
-
-                                        case 3:                                            
-                                            //Överför pengar                                           
+                                        case 3:                   
+                                            // method to transfer currency between users own accounts
                                             Transfer.TransferOwnAccounts(AccountList, TransferHistory);
                                             break;
 
                                         case 4:                                          
+                                            // shows transfer history
                                             Transfer.TransferHistory(TransferHistory);
-                                            //visa kontohistorik
                                             break;
 
                                          case 5:
-                                            TakeLoan.TakeLoanToAccount(AccountList); //Lånen blir max 5 ggr det som finns på kontot inkl lån = anv kan låna hur mycket som helst i hur många mån som helst
-                                            //problem att låna om man har 0 på kontot, evighetsloop.
+                                            // lets user take a bank loan
+                                            TakeLoan.TakeLoanToAccount(AccountList);
                                             break;
                                         
-                                          case 6:                                         
+                                          case 6:               
+                                           // shows current loans                         
                                            TakeLoan.PrintLoan(AccountList);
                                            break;
 
                                           case 7:
+                                            //log out to start menu
                                            LogOut();
                                            Console.WriteLine("Tryck valfri knapp för att logga ut!");
                                            break;
+                                        
                                         default:
                                             Console.WriteLine("Vänligen välj 1-7");
                                             break;
@@ -135,22 +141,22 @@ namespace Bank
                                 }
                                 break;
 
+                                // if user failed to login 3 times, program shuts down
                             case LoginManager.UserType.None:
                                 Console.WriteLine("För många felaktiga login försök.");
                                 Environment.Exit(0);
-                                //QuitApp(); ??
                                 break;
                         }
                         break;
 
                     case 2:
+                        // "closes" program
                         Console.WriteLine("Tack för idag");
                         QuitApp();
                         break;
 
                     default:
                         Console.WriteLine("Välj 1 eller 2");
-                        //Readkey??
                         break;
                 }
             }
