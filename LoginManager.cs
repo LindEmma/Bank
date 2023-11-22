@@ -13,6 +13,7 @@ namespace Bank
         public int LoginAttempts { get; private set; }
         public LoginUser LoggedInUser { get; private set; }
 
+        //Constructor to initialize the LoginManager with a list of users
         public LoginManager(List<LoginUser> users)
         {
             Users = users;
@@ -27,8 +28,10 @@ namespace Bank
             Admin
         }
 
+        // Method to handle the login process
         public UserType HandleLogin()
         {
+            //3 login attempts
             for (int i = 0; i < 3; i++)
             {
                 Console.WriteLine("Användarnamn");
@@ -36,7 +39,7 @@ namespace Bank
                 Console.WriteLine("Lösenord");
                 string password = Console.ReadLine();
 
-
+                // If login successful, determine user type and return
                 bool success = Login(userName, password);
                 if (success)
                 {
@@ -59,6 +62,7 @@ namespace Bank
             return UserType.None;
         }
 
+        // Method to perform the login
         private bool Login(string username, string password)
         {
             foreach (var user in Users)
@@ -70,6 +74,7 @@ namespace Bank
                 }
             }
 
+            // Login attempts and exit if exceeded
             LoginAttempts++;
 
             if (LoginAttempts >= 3)
@@ -80,6 +85,7 @@ namespace Bank
             return false;
         }
 
+        // Method to check if a user is an admin
         private bool IsAdmin(string username)
         {
             var user = Users.FirstOrDefault(u => u.UserName == username);
