@@ -120,12 +120,12 @@ namespace Bank
 
                                          case 5:
                                             // lets user take a bank loan
-                                            CustomerMethods.TakeLoanToAccount(AccountList);
+                                            TakeLoan.TakeLoanToAccount(AccountList);
                                             break;
                                         
-                                          case 6:                        
-                                            // shows current loans
-                                           CustomerMethods.PrintLoan(AccountList);
+                                          case 6:               
+                                           // shows current loans                         
+                                           TakeLoan.PrintLoan(AccountList);
                                            break;
 
                                           case 7:
@@ -133,6 +133,7 @@ namespace Bank
                                            LogOut();
                                            Console.WriteLine("Tryck valfri knapp för att logga ut!");
                                            break;
+                                        
                                         default:
                                             Console.WriteLine("Vänligen välj 1-7");
                                             break;
