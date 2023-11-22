@@ -20,13 +20,13 @@ namespace Bank.Logic
             LoanDurationMonths = loanDurationMonths;
         }
 
-        public static decimal TakeLoanToAccount(List<Account> AccountList) //Method that let user take loan
+        public static decimal TakeLoanToAccount(List<BankAccount> AccountList) //Method that let user take loan
         {
             Console.WriteLine("Välj ett konto att ta ett lån till:");
             CustomerMethods.PrintAccountNames(AccountList); // Display the names of existing accounts
             Console.Write("Ange kontonamnet för det konto du vill ta ett lån till: "); // Ask the user to select an account
             string selectedAccountName = Console.ReadLine();
-            Account selectedAccount = AccountList.Find(account => account.AccountName == selectedAccountName.ToLower());
+            BankAccount selectedAccount = AccountList.Find(account => account.AccountName == selectedAccountName.ToLower());
 
             if (selectedAccount != null)
             {
@@ -116,7 +116,7 @@ namespace Bank.Logic
             return selectedAccount?.Balance ?? 0; // Assuming selectedAccount can be null
 
         }
-        public static void PrintLoan(List<Account> AccountList) //Method that print accounts with loans
+        public static void PrintLoan(List<BankAccount> AccountList) //Method that print accounts with loans
         {
             bool anyAccountHasLoans = false;
             Console.WriteLine("Lånesaldo:");
