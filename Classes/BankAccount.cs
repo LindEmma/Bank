@@ -1,6 +1,6 @@
 ﻿namespace Bank.Classes
 {
-    public class Account
+    public class BankAccount
     {
         private decimal balance;
         public string AccountName { get; set; }
@@ -17,20 +17,20 @@
             }
         }
 
-        public Account(decimal balance, string accountName)
+        public BankAccount(decimal balance, string accountName)
         {
             Balance = balance;
             AccountName = accountName;
         }
 
         // method that prints the accounts info (balance and account name)
-        public void PrintAccountInfo()
+        public virtual void PrintAccountInfo()
         {
             Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance} SEK\n");
         }
 
         // prints only the name of the account
-        public void PrintAccountName()
+        public virtual void PrintAccountName()
         {
             Console.WriteLine("*" + AccountName);
         }
@@ -38,12 +38,5 @@
         {
             return Loans.Any();
         }
-    }
-    public class Loan
-    {
-        public decimal Amount { get; set; }
-        public string Purpose { get; set; }
-        public int DurationMonths { get; set; }
-
     }
 }

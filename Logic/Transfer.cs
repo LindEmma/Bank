@@ -16,7 +16,7 @@ namespace Bank.Logic
             amountOfMoney = 0;
         }
         // Method to transfer money between users own accounts
-        public void TransferOwnAccounts(List<Account> AccountList, List<string> TransferHistory)
+        public void TransferOwnAccounts(List<BankAccount> AccountList, List<string> TransferHistory)
         {
             DateTime date = DateTime.Now;
             var shortDate = date.ToString("yyyy-MM-dd HH:mm");
@@ -105,7 +105,6 @@ namespace Bank.Logic
             }
             Menu.PressKey();
         }
-
 
         // shows history of bank transfers
         public void TransferHistory(List<string> TransferHistory)
