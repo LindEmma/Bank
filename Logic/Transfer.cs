@@ -25,7 +25,6 @@ namespace Bank.Logic
             if (AccountList.Count == 0 || AccountList.Count == 1)
             {
                 Console.WriteLine("Du måste skapa minst två konton för att kunna göra en överföring");
-                Menu.PressKey();
             }
             else
             {
