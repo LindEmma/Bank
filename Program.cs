@@ -1,4 +1,6 @@
-﻿namespace Bank
+﻿// FunctionFoxes, Edugrade .NET23
+// Emma Lind, Gustav Lind, Frida Eriksson, Tom Ellner
+namespace Bank
 {
     internal class Program
     {
