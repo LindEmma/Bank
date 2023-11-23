@@ -3,7 +3,7 @@
 ## **Foxbank**-programmet program is comprised of 14 classes.
 
 
-***-Program.cs** creates a new Foxbank object and initiates the program.
+***-Program.cs*** creates a new Foxbank object and initiates the program.
 
 ***-App.cs*** contains the mothods **'Run()'**, **'QuitApp()'** and **'LogOut()'**.
 
