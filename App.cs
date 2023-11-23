@@ -19,7 +19,7 @@ namespace Bank
             RunApp = true;
             AccountList = new List<BankAccount>();
             TransferHistory = new List<string>();
-            Users = new List<LoginUser>
+            Users = new List<LoginUser> 
             {
                 new LoginUser("Frida", "Vinter2023", isAdmin: true),
                 new LoginUser("Tom", "Vinter2023"),
@@ -30,7 +30,6 @@ namespace Bank
             Login = true;
             loginManager = new LoginManager(Users);
         }
-
         public void QuitApp()
         {
             RunApp = false;
@@ -92,21 +91,30 @@ namespace Bank
                                 while (Login)
                                 { 
                                     Console.Clear();
-                                    Menu.PrintCustomerMenu();
+                                    if (AccountList.Count == 0) { Menu.PrintCustomerMenuNoAccounts(); }
+                                    else { Menu.PrintCustomerMenu(); }
                                     int customerChoice = ParseMethods.ReadInt();
                                     Console.Clear();
                                     Menu.MenuTitle();
                                     switch (customerChoice)
                                     {
-                                        case 1:
-                                            //Opens new savings account
-                                            var newAccount = CustomerMethods.CreateAccount(AccountList);
-                                            AccountList.Add(newAccount);
+                                        case 1: //Opens a CheckingsAccount as a first account
+                                            if (AccountList.Count == 0)
+                                            {
+                                                var newCheckingsAccount = OpenAccount.OpenCheckingsAccount(TransferHistory);
+                                                AccountList.Add(newCheckingsAccount);
+                                            }
+                                            else
+                                            {
+                                                //Opens new savings account
+                                                var newSavingsAccount = OpenAccount.OpenSavingsAccount(AccountList);
+                                                AccountList.Add(newSavingsAccount);
+                                            }
                                             break;
 
                                         case 2:                        
                                             //Shows info of all bank accounts
-                                            CustomerMethods.PrintAccountInfo(AccountList);
+                                            OpenAccount.PrintAccountInfo(AccountList);
                                             break;
                                         case 3:                   
                                             // method to transfer currency between users own accounts

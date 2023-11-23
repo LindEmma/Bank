@@ -1,6 +1,6 @@
 # README **Foxbank**
 
-## **Foxbank**-programmet program is comprised of 14 classes.
+## **Foxbank**-programmet program is comprised of 12 classes.
 
 
 ***-Program.cs*** creates a new Foxbank object and initiates the program.
@@ -17,7 +17,7 @@
 
 ***-AdminMethods.cs*** has a method **'CreateUser()'** that creates new user accounts/LoginUsers.
 
-***-CustomerMethods.cs*** has a method **'CreateAccount()'** that creates new bank accounts. It also contains **'PrintAccountInfo()'** and **'PrintAccountNames()'** methods.
+***-OpenAccount.cs*** has a method **'OpenCheckingsAccount()'** that creates the users main bank account. After the first account is made, new savings accounts can be made with method **'OpenSavingsAccount'**. The class also contains **'PrintAccountInfo()'** and **'PrintAccountNames()'** methods.
 
 ***-BankAccount.cs*** is used to create new bank accounts. It includes the methods **'PrintAccountInfo()'**, **'PrintAccountName()'** and **'HasLoans()'**.
 
@@ -26,7 +26,3 @@
 ***-Loan.cs***
 
 ***-TakeLoan.cs*** is used to take loans from the bank using the method **'TakeLoanToAccount()'**. It also includes a method to display the loan, **'PrintLoan()'**.
-
-***-EuroAccount.cs*** inherits from the ***BankAccount*** class. It overrides methods **'PrintAccountInfo()'** and **'PrintAccountName()'**.
-
-***-SavingsAccount.cs*** also inherits from the ***BankAccount*** class. It overrides methods **'PrintAccountInfo()'** and **'PrintAccountName()'**. **'ShowInterest()'** is added to show interest on the savings.

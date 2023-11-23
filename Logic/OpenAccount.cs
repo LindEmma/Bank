@@ -1,21 +1,35 @@
 ﻿using Bank.Classes;
 using Bank.Console_output;
+using Spectre.Console;
 
 namespace Bank.Logic
 {
-    internal static class CustomerMethods
+    internal static class OpenAccount
     {
+        // Method to open a Checkings account as a first account, this account contains the users salary
+        // returns an account with balance= 10000 and accountName = "Betalkonto", or null. 
+        public static BankAccount OpenCheckingsAccount(List<string> TransferHistory)
+        {
+            Console.WriteLine("Tryck på valfri knapp för att öppna ditt betalkonto!\n");
+            Console.ReadKey();
+            Console.WriteLine("Ditt betalkonto är öppnat!\nDu kan se det under fliken \"Visa dina konton\"");
+            Menu.PressKey();
+
+            string logg = $"Från: Lönekontoret\nTill: Betalkonto\nBelopp: 10000 SEK";
+            TransferHistory.Add(logg);
+
+            return new BankAccount(10000, "Betalkonto");
+        }
 
         // method that lets the user create a new Account. Adds it to AccountList.
-        public static BankAccount CreateAccount(List<BankAccount> AccountList)
+        public static BankAccount OpenSavingsAccount(List<BankAccount> AccountList)
         {
             string AccountName = "";
-            decimal Balance;
 
             //Handles the name of the account
             while (String.IsNullOrEmpty(AccountName) || AccountList.Exists(x => x.AccountName == AccountName))
             {
-                Console.Write("Vad ska ditt konto heta? ");
+                Console.Write("Vad ska ditt sparkonto heta? ");
                 AccountName = Console.ReadLine();
                 if (String.IsNullOrEmpty(AccountName))
                 {
@@ -26,22 +40,11 @@ namespace Bank.Logic
                     Console.WriteLine("Kontonamnet finns redan, testa ett nytt namn\n");
                 }
             }
-            //Handles how much money the user wants to add to the account (no limit as of now)
-            do
-            {
-                Console.Write("Hur mycket pengar vill du lägga in på kontot? (SEK) ");
-                Balance = ParseMethods.ReadDecimal();
-                if (Balance < 0)
-                {
-                    Menu.ClearTitle();
-                    Console.WriteLine("Du kan inte lägga in negativa belopp på kontot, testa igen\n");
-                }
-            } while (Balance < 0);
 
-            Console.WriteLine("\nKontot har skapats!");
+            Console.WriteLine("\nSparkontot har skapats!");
             Menu.PressKey();
-            return new BankAccount(Balance, AccountName); //returns new Account
 
+            return new BankAccount(0, AccountName); //returns new Account
         }
         //Loops through the info for each account, if AccountList is empty there is a message
         public static void PrintAccountInfo(List<BankAccount> AccountList)
