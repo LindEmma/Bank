@@ -1,6 +1,6 @@
-README Foxbank
+# README Foxbank
 
-Foxbank-programmet är uppbygt av 14 klasser.
+## Foxbank-programmet är uppbygt av 14 klasser.
 
 
 Program.cs skapar ett nytt Foxbank-objekt och startar programmet.
