@@ -15,7 +15,7 @@
 
 ***-LoginManager.cs*** manages the login with **'Login()'** and **'HandleLogin()'** and checks whether the user is an admin or not, **'isAdmin()'**.
 
-***-AdminMethods.cs*** has a method **'CreateUser()'** that creates new LoginUsers.
+***-AdminMethods.cs*** has a method **'CreateUser()'** that creates new user accounts/LoginUsers.
 
 ***-CustomerMethods.cs*** has a method **'CreateAccount()'** that creates new bank accounts. It also contains **'PrintAccountInfo()'** and **'PrintAccountNames()'** methods.
 
