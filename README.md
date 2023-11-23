@@ -3,25 +3,25 @@
 ## **Foxbank**-programmet är uppbygt av 14 klasser.
 
 
-***-Program.cs*** skapar ett nytt Foxbank-objekt och startar programmet.
+***-Program.cs** creates a new Foxbank object and initiates the program.
 
-***-App.cs*** innehåller metoderna **'Run()'**, **'QuitApp()'** och **'LogOut()'**.
+***-App.cs*** contains the mothods **'Run()'**, **'QuitApp()'** and **'LogOut()'**.
 
-***-Menu.cs*** innehåller olika menyer som skrivs ut till användaren. **'MenuTitle()'**, **'PrintStartMenu()'**, **'PrintCustomerMenu()'**, **'PrintAdminMenu()'**, **'PressKey()'** och **'ClearTitle()'**.
+***-Menu.cs*** includes various menus displayed to the user. **'MenuTitle()'**, **'PrintStartMenu()'**, **'PrintCustomerMenu()'**, **'PrintAdminMenu()'**, **'PressKey()'** and **'ClearTitle()'**.
 
-***-ParseMethods.cs*** används för att läsa av hel/decimaltal, **'ReadInt()'** eller **'ReadDecimal()'**.
+***-ParseMethods.cs*** is used to read integers/decimal numbers, **'ReadInt()'** or **'ReadDecimal()'**.
 
-***-LoginUser.cs*** används för att skapa nya användare. Det finns 4 användare redan sparade i en lista av LoginUsers: "Frida" (Admin), "Tom", "Emma" och "Gustav". Lösenord för samtliga: "Vinter2023".
+***-LoginUser.cs*** is used to create new users. There are already 4 users stored in a list of LoginUsers: "Frida" (Admin), "Tom", "Emma" and "Gustav". Password for all: "Vinter2023".
 
-***-LoginManager.cs*** sköter inloggningen med **'Login()'** och **'HandleLogin()'** och kollar om användaren är admin eller inte, **'isAdmin()'**.
+***-LoginManager.cs*** manages the login with **'Login()'** and **'HandleLogin()'** and checks whether the user is an admin or not, **'isAdmin()'**.
 
-***-AdminMethods.cs*** har en metod **'CreateUser()'** som skapar nya LoginUsers.
+***-AdminMethods.cs*** has a method **'CreateUser()'** that creates new LoginUsers.
 
-***-CustomerMethods.cs*** har en metod **'CreateAccount()'** som skapar nya nya bank-konton. Det finns även **'PrintAccountInfo()'** och **'PrintAccountNames()'** i denna klass.
+***-CustomerMethods.cs*** has a method **'CreateAccount()'** that creates new bank accounts. It also contains **'PrintAccountInfo()'** and **'PrintAccountNames()'** methods.
 
-***-BankAccount.cs*** används för att skapa nya bank-konton. Där finns metoderna **'PrintAccountInfo()'**, **'PrintAccountName()'** samt **'HasLoans()'**.
+***-BankAccount.cs*** is used to create new bank accounts. It includes the methods **'PrintAccountInfo()'**, **'PrintAccountName()'** and **'HasLoans()'**.
 
-***-Transfer.cs*** gör det möjligt att föra över pengar mellan konton med hjälp av metoden **'TransferOwnAccounts()'**. Man kan även visa överföringshistorik med **'TransferHistory()'**.
+***-Transfer.cs*** allows transferring money between accounts using the method **'TransferOwnAccounts()'**. It also enables viewing transfer history with **'TransferHistory()'**.
 
 ***-Loan.cs***
 
