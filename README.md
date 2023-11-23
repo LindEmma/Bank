@@ -25,9 +25,8 @@
 
 ***-Loan.cs***
 
-***-TakeLoan.cs***
+***-TakeLoan.cs*** is used to take loans from the bank using the method **'TakeLoanToAccount()'**. It also includes a method to display the loan, **'PrintLoan()'**.
 
-***-SavingsAccount.cs***
+***-EuroAccount.cs*** inherits from the ***BankAccount*** class. It overrides methods **'PrintAccountInfo()'** and **'PrintAccountName()'**.
 
-***-EuroAccount.cs***
-
+***-SavingsAccount.cs*** also inherits from the ***BankAccount*** class. It overrides methods **'PrintAccountInfo()'** and **'PrintAccountName()'**. **'ShowInterest()'** is added to show interest on the savings.
