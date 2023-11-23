@@ -5,7 +5,7 @@
 
 ***-Program.cs*** creates a new Foxbank object and initiates the program.
 
-***-App.cs*** contains the mothods **'Run()'**, **'QuitApp()'** and **'LogOut()'**.
+***-App.cs*** contains the methods **'Run()'**, **'QuitApp()'** and **'LogOut()'**.
 
 ***-Menu.cs*** includes various menus displayed to the user. **'MenuTitle()'**, **'PrintStartMenu()'**, **'PrintCustomerMenu()'**, **'PrintAdminMenu()'**, **'PressKey()'** and **'ClearTitle()'**.
 
