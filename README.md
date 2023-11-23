@@ -1,6 +1,6 @@
 # README **Foxbank**
 
-## **Foxbank**-programmet program is comprised of 12 classes.
+## The **Foxbank** program is comprised of 12 classes.
 
 
 ***-Program.cs*** creates a new Foxbank object and initiates the program.
