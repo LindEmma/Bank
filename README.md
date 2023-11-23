@@ -7,7 +7,7 @@
 
 ***-App.cs*** contains the methods **'Run()'**, **'QuitApp()'** and **'LogOut()'**.
 
-***-Menu.cs*** includes various menus displayed to the user. **'MenuTitle()'**, **'PrintStartMenu()'**, **'PrintCustomerMenu()'**, **'PrintAdminMenu()'**, **'PressKey()'** and **'ClearTitle()'**.
+***-Menu.cs*** includes various menus displayed to the user and minor features. **'MenuTitle()'**, **'PrintStartMenu()'**, **'PrintCustomerMenu()'**, **'PrintAdminMenu()'**, **'PressKey()'** and **'ClearTitle()'**.
 
 ***-ParseMethods.cs*** is used to read integers/decimal numbers, **'ReadInt()'** or **'ReadDecimal()'**.
 
