@@ -1,9 +1,4 @@
 ﻿using Bank.Classes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bank.Logic
 {
@@ -12,8 +7,6 @@ namespace Bank.Logic
         private decimal LoanAmount;
         private string LoanPurpose;
         private int LoanDurationMonths;
-
-        
 
         public TakeLoan(decimal loanAmount, string loanPurpose, int loanDurationMonths) // Constructor to initialize the TakeLoan object with loan details
         {
@@ -25,7 +18,7 @@ namespace Bank.Logic
         public static decimal TakeLoanToAccount(List<BankAccount> AccountList) //Method that let user take loan
         {
             Console.WriteLine("Välj ett konto att ta ett lån till:");
-            CustomerMethods.PrintAccountNames(AccountList); // Display the names of existing accounts
+            OpenAccount.PrintAccountNames(AccountList); // Display the names of existing accounts
             Console.Write("Ange kontonamnet för det konto du vill ta ett lån till: "); // Ask the user to select an account
             string selectedAccountName = Console.ReadLine();
             BankAccount selectedAccount = AccountList.Find(account => account.AccountName == selectedAccountName.ToLower());
@@ -118,7 +111,6 @@ namespace Bank.Logic
                 Console.WriteLine("Inget konto hittades med det angivna namnet.");
             }
 
-
             Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
             Console.ReadKey();
             return selectedAccount?.Balance ?? 0; // Assuming selectedAccount can be null
@@ -147,9 +139,5 @@ namespace Bank.Logic
             }
             Console.ReadKey();
         }
-
-
-
-
-
-}   }
+    }
+}
