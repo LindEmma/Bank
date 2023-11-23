@@ -7,11 +7,11 @@ namespace Bank
     internal class App
     {
         public bool RunApp { get; set; }
-        private List<BankAccount> AccountList { get; set; }
-        private List<string> TransferHistory { get; set; }
-        private List<LoginUser> Users { get; set; }
-        private LoginManager loginManager;
-        private Transfer Transfer { get; set; }
+        public List<BankAccount> AccountList { get; set; }
+        public List<string> TransferHistory { get; set; }
+        public List<LoginUser> Users { get; set; }
+        public LoginManager LoginManager;
+        public Transfer Transfer { get; set; }
         public bool Login { get; set; }
 
         public App()
@@ -28,7 +28,7 @@ namespace Bank
             };
             Transfer = new Transfer();
             Login = true;
-            loginManager = new LoginManager(Users);
+            LoginManager = new LoginManager(Users);
         }
         public void QuitApp()
         {
@@ -53,7 +53,7 @@ namespace Bank
                 {
                     case 1:
                         Login = true;
-                        LoginManager.UserType userType = loginManager.HandleLogin();
+                        LoginManager.UserType userType = LoginManager.HandleLogin();
                         Console.Clear();
                         
                         switch (userType)
