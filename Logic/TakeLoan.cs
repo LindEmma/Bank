@@ -21,7 +21,7 @@ namespace Bank.Logic
             OpenAccount.PrintAccountNames(AccountList); // Display the names of existing accounts
             Console.Write("Ange kontonamnet för det konto du vill ta ett lån till: "); // Ask the user to select an account
             string selectedAccountName = Console.ReadLine();
-            BankAccount selectedAccount = AccountList.Find(account => account.AccountName == selectedAccountName.ToLower());
+            BankAccount selectedAccount = AccountList.Find(account => account.AccountName == selectedAccountName);
 
             if (selectedAccount != null)
             {
