@@ -23,6 +23,6 @@
 
 ***-Transfer.cs*** allows transferring money between accounts using the method **'TransferOwnAccounts()'**. It also enables viewing transfer history with **'TransferHistory()'**.
 
-***-Loan.cs***
+***-Loan.cs*** is used to create new loans.
 
 ***-TakeLoan.cs*** is used to take loans from the bank using the method **'TakeLoanToAccount()'**. It also includes a method to display the loan, **'PrintLoan()'**.
