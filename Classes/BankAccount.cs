@@ -18,7 +18,7 @@ namespace Bank.Classes
         // method that prints the accounts info (balance and account name)
         public void PrintAccountInfo()
         {
-            Console.WriteLine($"Kontonamn: {AccountName}\nSaldo: {Balance} SEK\n");
+            Console.WriteLine($"\nKontonamn: {AccountName}\nSaldo: {Balance} SEK");
         }
 
         // prints only the name of the account
