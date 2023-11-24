@@ -99,15 +99,6 @@ namespace Bank.Logic
                         string logg = $"{shortDate}\nFrån: {fromAccount.AccountName}\nTill: {toAccount.AccountName}\nBelopp: -{AmountOfMoney} SEK";
                         Console.WriteLine($"Kvittens\nÖverföring {logg}");
 
-                        //if (fromAccount.AccountName != "Betalkonto")
-                        //{
-                        //    Console.WriteLine($"Ränta 3%\nNy årsränta för {fromAccount.AccountName}: {fromAccount.Balance * 0,03}");
-                        //}
-                        //if (toAccount.AccountName != "Betalkonto")
-                        //{
-                        //    Console.WriteLine($"Ränta 3%\nNy årsränta för {toAccount.AccountName}: {toAccount.Balance * 0,03}");
-                        //}
-                        //adds the logg to TransferHistory list
                         TransferHistory.Add(logg);
                     }
                 }

@@ -1,4 +1,5 @@
 ﻿using Bank.Classes;
+using Bank.Console_output;
 
 namespace Bank.Logic
 {
@@ -29,8 +30,7 @@ namespace Bank.Logic
                 {
                     // Cannot take a loan on an account with zero balance
                     Console.WriteLine("Du kan ej ta ett lån på ett konto med saldo 0");
-                    Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
-                    Console.ReadKey();
+                    Menu.PressKey();
                     return selectedAccount.Balance;
 
                 }
@@ -38,8 +38,7 @@ namespace Bank.Logic
                 {
                     // Account already has an existing loan
                     Console.WriteLine("Det valda kontot har redan ett lån.");
-                    Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
-                    Console.ReadKey();
+                    Menu.PressKey();
                     return selectedAccount.Balance;
                 }
 
@@ -99,20 +98,15 @@ namespace Bank.Logic
                     Console.WriteLine("Totalt att betala tillbaka: " + totalPayback); //print total payback
                     Console.WriteLine("Måndadskonstad/ " + totalPayback / loanDurationMonths + "SEK");//Cost each month
 
-                    Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
-                    Console.ReadKey();
+                    Menu.PressKey();
                     return selectedAccount.Balance;
-                    return totalPayback;// Return the new balance after the loan
-
                 }
             }
             else
             {
                 Console.WriteLine("Inget konto hittades med det angivna namnet.");
             }
-
-            Console.WriteLine("Tryck på valfri knapp för att gå tillbaka till menyn");
-            Console.ReadKey();
+            Menu.PressKey();
             return selectedAccount?.Balance ?? 0; // Assuming selectedAccount can be null
 
         }
@@ -129,7 +123,6 @@ namespace Bank.Logic
                     decimal totalOwed = account.Loans.Sum(loan => loan.Amount + (loan.Amount * 0.05m));
                     Console.WriteLine($"Betala till banken: {totalOwed} SEK");
                     Console.WriteLine("------------------------------------------------");
-
                 }
             }
             if (!anyAccountHasLoans)

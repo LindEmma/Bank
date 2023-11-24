@@ -7,7 +7,7 @@ namespace Bank.Logic
     internal static class OpenAccount
     {
         // Method to open a Checkings account as a first account, this account contains the users salary
-        // returns an account with balance= 35000 and accountName = "Betalkonto". 
+        // returns an account with balance= 35000 and accountName = "Betalkonto" 
         public static BankAccount OpenCheckingsAccount(List<string> TransferHistory)
         {
             DateTime dateTime = DateTime.Now;
@@ -19,11 +19,11 @@ namespace Bank.Logic
 
             string logg = $"{date}\nFrån: Lönekontoret\nTill: Betalkonto\nBelopp: 35000 SEK";
             TransferHistory.Add(logg);
-            string accountName = "Betalkonto";
-            return new BankAccount(35000m, accountName);
+         
+            return new BankAccount(35000m, "Betalkonto");
         }
 
-        // method that lets the user create a new Account. Adds it to AccountList.
+        // method that lets the user create a new Account. Adds it to AccountList
         public static BankAccount OpenSavingsAccount(List<BankAccount> AccountList)
         {
             string AccountName = "";
@@ -48,34 +48,37 @@ namespace Bank.Logic
 
             return new BankAccount(0, AccountName); //returns new Account
         }
-        //Loops through the info for each account, if AccountList is empty there is a message
+
+        // Method that loops through the info for each account, if AccountList is empty there is a message
         public static void PrintAccountInfo(List<BankAccount> AccountList)
         {
             var table = new Table();
             var table2 = new Table();
 
+            // if AccountList is empty, a message says so
             if (AccountList.Count == 0)
             {
                 Console.WriteLine("Det finns inga konton");
             }
             else
             {
-                int NumberOfAccounts = AccountList.Count;
-                AnsiConsole.MarkupLine($"[blue]Antal konton: {NumberOfAccounts}[/]\n");
+                //shows how many accounts is in Accountlist
+                AnsiConsole.MarkupLine($"[blue]Antal konton: {AccountList.Count}[/]\n");
                 var checkingsAccount = AccountList.Find(x => x.AccountName == "Betalkonto");
-                //Console.WriteLine("Betalkonton:\n");
+
+                //adds decorative column for checkings account using spectre console
                 table.AddColumn("Betalkonton");
                 AnsiConsole.Write(table);
 
-
+                //shows info of checkings account
                 checkingsAccount.PrintAccountInfo();
-                //Console.WriteLine("------------------------\n");
                 AccountList.Remove(checkingsAccount);
-                //Console.WriteLine("Sparkonton (ränta 3%):\n");
 
                 table2.AddColumn("Sparkonton");
+                Console.WriteLine();
                 AnsiConsole.Write(table2);
 
+                //loops through info of each savings account including interest, if there are any in AccountList
                 if (AccountList.Count == 0)
                 {
                     Console.WriteLine("Det finns inga sparkonton");
@@ -85,7 +88,7 @@ namespace Bank.Logic
                     foreach (var account in AccountList)
                     {
                         account.PrintAccountInfo();
-                        Console.WriteLine($"Aktuell årsränta: " + account.CalculateInterest());
+                        Console.WriteLine($"|Aktuell årsränta (3%): " + account.CalculateInterest()+" SEK\n");
                     }
                 }
                 AccountList.Add(checkingsAccount);

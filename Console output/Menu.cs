@@ -60,9 +60,8 @@ namespace Bank.Console_output
         }
         public static void PressKey()
         {
-            Console.WriteLine("\nTryck på valfri knapp för att gå tillbaka");
+            AnsiConsole.MarkupLine("\n[rapidblink]Tryck på valfri knapp för att gå tillbaka[/]");
             Console.ReadKey();
-        
         }
         public static void ClearTitle()
         {
